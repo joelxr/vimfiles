@@ -1,7 +1,9 @@
-" Working directory
-cd /home/joel/dev/projects/
-
-let $PATH=$PATH . '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/joel/dev/tools/apache-maven-3.0.5/bin:/home/joel/dev/tools/apache-maven-3.0.5/bin'
+" Working directory & classpath
+if has("unix")
+	cd /home/joel/dev/projects/
+	
+	let $PATH=$PATH . '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/joel/dev/tools/apache-maven-3.0.5/bin:/home/joel/dev/tools/apache-maven-3.0.5/bin'
+endif
 
 set autochdir
 set nocompatible
@@ -23,7 +25,7 @@ set shiftwidth=3
 set softtabstop=3
 set tabstop=3
 set expandtab
-set list listchars=tab:\ \ ,trail:·
+"set list listchars=tab:\ \ ,trail:·
 set nowrap
 set linebreak
 set foldmethod=indent
@@ -32,7 +34,7 @@ set nofoldenable
 set linespace=3
 set ic
 set smartcase
-set statusline=%f       "tail of the filename
+set statusline=%f
 set statusline+=%{fugitive#statusline()}
 set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
 set statusline+=%=
@@ -45,16 +47,22 @@ set wildmenu
 set wildmode=list:longest,full
 set mps+=<:>
 set guioptions-=T
-set rtp+=~/.vim/bundle/vundle/
 
-call vundle#rc()
+if has('win32') || has('win64')
+  set rtp+=$VIM/vimfiles/bundle/vundle/
+  call vundle#rc('$VIM/vimfiles/bundle/')
+else
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#rc()
+endif
+
 syntax on
 filetype plugin indent on
 
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle "scrooloose/nerdtree"
@@ -149,3 +157,8 @@ let g:acp_behavior = {
       \ 'meets'        : 'MeetsForJavaEclim',
     \ }]
   \ }
+
+if has("win32") || has ("win64")
+	let g:EclimHome = 'C:\Users\jrocha\dev\eclipse\plugins\org.eclim.core_2.2.5'
+	let g:EclimEclipseHome = 'C:\Users\jrocha\dev\eclipse'
+endif
