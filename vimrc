@@ -5,6 +5,14 @@ if has("unix")
 	let $PATH=$PATH . '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/joel/dev/tools/apache-maven-3.0.5/bin:/home/joel/dev/tools/apache-maven-3.0.5/bin'
 endif
 
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
+
 set autochdir
 set nocompatible
 set showcmd
@@ -18,13 +26,13 @@ set gcr=a:blinkon0
 set keymodel-=stopsel
 set visualbell
 set autoread
-set autoindent
-set smartindent
+set expandtab
 set smarttab
 set shiftwidth=3
+set autoindent
+set smartindent
 set softtabstop=3
 set tabstop=3
-set expandtab
 "set list listchars=tab:\ \ ,trail:·
 set nowrap
 set linebreak
@@ -90,17 +98,25 @@ map <C-E><C-F> :%JavaFormat<CR>
 map <C-E><C-H> :%!tidy -mqi --doctype omit --show-body-only true --show-warnings no --vertical-space no --wrap 0 -latin1<CR>
 map <C-E><C-X> :%!tidy -mqi --doctype omit --show-body-only true --show-warnings no --vertical-space no --wrap 0 -latin1 -xml<CR>
 
+nnoremap <C-Down> :m .+1<CR>==
+nnoremap <C-Up> :m .-2<CR>==
+inoremap <C-Down> <Esc>:m .+1<CR>==gi
+inoremap <C-Up> <Esc>:m .-2<CR>==gi
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+vnoremap <C-Up> :m '<-2<CR>gv=gv
+
+inoremap <C-Return> <CR><CR><C-o>k<Tab>
 
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
-inoremap { {<CR>}<Esc>O
+inoremap { {}<Esc>i
 autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
 inoremap ) <c-r>=ClosePair(')')<CR>
 inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap } <c-r>=CloseBracket()<CR>
+inoremap } <c-r>=ClosePair('}')<CR>
+"inoremap } <c-r>=CloseBracket()<CR>
 inoremap " <c-r>=QuoteDelim('"')<CR>
 inoremap ' <c-r>=QuoteDelim("'")<CR>
-
 
 function ClosePair(char)
   if getline('.')[col('.') - 1] == a:char
@@ -113,9 +129,9 @@ endf
 function CloseBracket()
   if match(getline(line('.') + 1), '\s*}') < 0
     return "\<CR>}"
-  else
-    return "\<Esc>j0f}a"
-  endif
+ else
+   return "\<Esc>j0f}a"
+ endif
 endf
 
 function QuoteDelim(char)
@@ -147,7 +163,6 @@ function! DoPrettyXML()
   exe "set ft=" . l:origft
 endfunction
 command! PrettyXML call DoPrettyXML()
-
 
 let g:acp_behaviorJavaEclimLength = 1
 function MeetsForJavaEclim(context)
