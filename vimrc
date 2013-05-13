@@ -5,6 +5,11 @@ if has("unix")
 	let $PATH=$PATH . '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/joel/dev/tools/apache-maven-3.0.5/bin:/home/joel/dev/tools/apache-maven-3.0.5/bin'
 endif
 
+if has("win32") || has ("win64")
+	let g:EclimHome = 'C:\Users\jrocha\dev\eclipse\plugins\org.eclim.core_2.2.5'
+	let g:EclimEclipseHome = 'C:\Users\jrocha\dev\eclipse'
+endif
+
 if has("gui_running")
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
@@ -15,7 +20,7 @@ endif
 
 set autochdir
 set nocompatible
-set showcmd
+""set showcmd
 set number
 set showbreak=...
 set wrap linebreak nolist
@@ -42,14 +47,20 @@ set nofoldenable
 set linespace=3
 set ic
 set smartcase
-set statusline=%f
+set laststatus=2
+
+set statusline=%t
+set statusline+=[%{strlen(&fenc)?&fenc:'none'},
+set statusline+=%{&ff}]
 set statusline+=%{fugitive#statusline()}
 set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
+set statusline+=%h
+set statusline+=%m
+set statusline+=%r
+set statusline+=%y
 set statusline+=%=
 set statusline+=%c,
 set statusline+=%l/%L
-set statusline+=\ %P
-set laststatus=3
 set cursorline
 set wildmenu
 set wildmode=list:longest,full
@@ -78,18 +89,12 @@ Bundle "vim-scripts/snipMate"
 Bundle "itspriddle/vim-jquery"
 Bundle "tpope/vim-surround"
 Bundle "tpope/vim-vividchalk"
-Bundle "vim-scripts/ZoomWin"
-Bundle "vim-scripts/matchparenpp"
 Bundle "vim-scripts/MatchTag"
 Bundle "vim-scripts/AutoComplPop"
+Bundle "vim-scripts/matchparenpp"
 Bundle "Yggdroot/indentLine"
 
 colorscheme vividchalk
-
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 map <C-B> "+gP
 map <F2> :NERDTreeToggle<CR>
@@ -98,12 +103,12 @@ map <C-E><C-F> :%JavaFormat<CR>
 map <C-E><C-H> :%!tidy -mqi --doctype omit --show-body-only true --show-warnings no --vertical-space no --wrap 0 -latin1<CR>
 map <C-E><C-X> :%!tidy -mqi --doctype omit --show-body-only true --show-warnings no --vertical-space no --wrap 0 -latin1 -xml<CR>
 
-nnoremap <C-Down> :m .+1<CR>==
-nnoremap <C-Up> :m .-2<CR>==
-inoremap <C-Down> <Esc>:m .+1<CR>==gi
-inoremap <C-Up> <Esc>:m .-2<CR>==gi
-vnoremap <C-Down> :m '>+1<CR>gv=gv
-vnoremap <C-Up> :m '<-2<CR>gv=gv
+nnoremap <A-Down> :m .+1<CR>==
+nnoremap <A-Up> :m .-2<CR>==
+inoremap <A-Down> <Esc>:m .+1<CR>==gi
+inoremap <A-Up> <Esc>:m .-2<CR>==gi
+vnoremap <A-Down> :m '>+1<CR>gv=gv
+vnoremap <A-Up> :m '<-2<CR>gv=gv
 
 inoremap <C-Return> <CR><CR><C-o>k<Tab>
 
@@ -176,8 +181,3 @@ let g:acp_behavior = {
       \ 'meets'        : 'MeetsForJavaEclim',
     \ }]
   \ }
-
-if has("win32") || has ("win64")
-	let g:EclimHome = 'C:\Users\jrocha\dev\eclipse\plugins\org.eclim.core_2.2.5'
-	let g:EclimEclipseHome = 'C:\Users\jrocha\dev\eclipse'
-endif
