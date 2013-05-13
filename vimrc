@@ -74,6 +74,7 @@ Bundle "vim-scripts/ZoomWin"
 Bundle "vim-scripts/matchparenpp"
 Bundle "vim-scripts/MatchTag"
 Bundle "vim-scripts/AutoComplPop"
+Bundle "Yggdroot/indentLine"
 
 colorscheme vividchalk
 
@@ -86,6 +87,9 @@ map <C-B> "+gP
 map <F2> :NERDTreeToggle<CR>
 map <F3> :only<CR>
 map <C-E><C-F> :%JavaFormat<CR>
+map <C-E><C-H> :%!tidy -mqi --doctype omit --show-body-only true --show-warnings no --vertical-space no --wrap 0 -latin1<CR>
+map <C-E><C-X> :%!tidy -mqi --doctype omit --show-body-only true --show-warnings no --vertical-space no --wrap 0 -latin1 -xml<CR>
+
 
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
