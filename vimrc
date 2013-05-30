@@ -3,8 +3,6 @@ if has("unix")
 	cd /home/joel/dev/projects/
 	
 	let $PATH=$PATH . '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/joel/dev/tools/apache-maven-3.0.5/bin:/home/joel/dev/tools/apache-maven-3.0.5/bin'
-   let Checkstyle_Classpath = '/home/joel/dev/tools/checkstyle-5.6/checkstyle-5.6-all.jar'
-   let Checkstyle_XML = '/home/joel/dev/tools/checkstyle-5.6/sun_checks.xml'
 endif
 
 if has("win32") || has ("win64")
@@ -95,7 +93,6 @@ Bundle "vim-scripts/MatchTag"
 Bundle "vim-scripts/AutoComplPop"
 Bundle "vim-scripts/matchparenpp"
 Bundle "Yggdroot/indentLine"
-Bundle "vim-scripts/java_checkstyle.vim"
 
 colorscheme vividchalk
 
