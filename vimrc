@@ -1,13 +1,7 @@
 " Working directory & classpath
 if has("unix")
 	cd /home/joel/dev/projects/
-	
 	let $PATH=$PATH . '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/joel/dev/tools/apache-maven-3.0.5/bin:/home/joel/dev/tools/apache-maven-3.0.5/bin'
-endif
-
-if has("win32") || has ("win64")
-	let g:EclimHome = 'C:\Users\jrocha\dev\eclipse\plugins\org.eclim.core_2.2.5'
-	let g:EclimEclipseHome = 'C:\Users\jrocha\dev\eclipse'
 endif
 
 if has("gui_running")
@@ -20,7 +14,7 @@ endif
 
 set autochdir
 set nocompatible
-""set showcmd
+set showcmd
 set number
 set showbreak=...
 set wrap linebreak nolist
@@ -38,7 +32,7 @@ set autoindent
 set smartindent
 set softtabstop=3
 set tabstop=3
-"set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:\ \ ,trail:·
 set nowrap
 set linebreak
 set foldmethod=indent
@@ -48,7 +42,6 @@ set linespace=3
 set ic
 set smartcase
 set laststatus=2
-
 set statusline=%t
 set statusline+=[%{strlen(&fenc)?&fenc:'none'},
 set statusline+=%{&ff}]
@@ -125,7 +118,7 @@ autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<
 inoremap ) <c-r>=ClosePair(')')<CR>
 inoremap ] <c-r>=ClosePair(']')<CR>
 inoremap } <c-r>=ClosePair('}')<CR>
-"inoremap } <c-r>=CloseBracket()<CR>
+inoremap } <c-r>=CloseBracket()<CR>
 inoremap " <c-r>=QuoteDelim('"')<CR>
 inoremap ' <c-r>=QuoteDelim("'")<CR>
 
@@ -174,16 +167,3 @@ function! DoPrettyXML()
   exe "set ft=" . l:origft
 endfunction
 command! PrettyXML call DoPrettyXML()
-
-let g:acp_behaviorJavaEclimLength = 1
-function MeetsForJavaEclim(context)
-  return g:acp_behaviorJavaEclimLength >= 0 &&
-        \ a:context =~ '\k\.\k\{' . g:acp_behaviorJavaEclimLength . ',}$'
-endfunction
-let g:acp_behavior = {
-    \ 'java': [{
-      \ 'command': "\<c-x>\<c-u>",
-      \ 'completefunc' : 'eclim#java#complete#CodeComplete',
-      \ 'meets'        : 'MeetsForJavaEclim',
-    \ }]
-  \ }
