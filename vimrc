@@ -1,16 +1,38 @@
-" Working directory & classpath
-if has("unix")
-	cd /home/joel/dev/projects/
-	let $PATH=$PATH . '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/joel/dev/tools/apache-maven-3.0.5/bin:/home/joel/dev/tools/apache-maven-3.0.5/bin'
-endif
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rstacruz/sparkup'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/snipMate'
+Plugin 'vim-scripts/AutoClose'
+Plugin 'vim-scripts/css_color'
+Plugin 'vim-scripts/Buffergator'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-scripts/AutoComplPop'
+Plugin 'Yggdroot/indentLine'
+
+call vundle#end()
+syntax on
+filetype plugin indent on
 
 if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Inconsolata\ 12
-  elseif has("gui_win32")
-    set guifont=Consolas:h11:cANSI
-  endif
+   if has("gui_gtk2")
+		set guifont=Inconsolata\ 12
+	elseif has("gui_win32")
+		set guifont=Consolas:h11:cANSI
+	endif
 endif
+
+colorscheme vividchalk
 
 set autochdir
 set nocompatible
@@ -42,128 +64,8 @@ set linespace=3
 set ic
 set smartcase
 set laststatus=2
-set statusline=%t
-set statusline+=[%{strlen(&fenc)?&fenc:'none'},
-set statusline+=%{&ff}]
-set statusline+=%{fugitive#statusline()}
-set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
-set statusline+=%h
-set statusline+=%m
-set statusline+=%r
-set statusline+=%y
-set statusline+=%=
-set statusline+=%c,
-set statusline+=%l/%L
 set cursorline
 set wildmenu
 set wildmode=list:longest,full
 set mps+=<:>
 set guioptions-=T
-
-if has('win32') || has('win64')
-  set rtp+=$VIM/vimfiles/bundle/vundle/
-  call vundle#rc('$VIM/vimfiles/bundle/')
-else
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
-endif
-
-syntax on
-filetype plugin indent on
-
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim'}
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle "scrooloose/nerdtree"
-Bundle "vim-scripts/snipMate"
-Bundle "itspriddle/vim-jquery"
-Bundle "tpope/vim-surround"
-Bundle "tpope/vim-vividchalk"
-Bundle "vim-scripts/MatchTag"
-Bundle "vim-scripts/AutoComplPop"
-Bundle "vim-scripts/matchparenpp"
-Bundle "Yggdroot/indentLine"
-
-colorscheme vividchalk
-
-map <C-B> "+gP
-map <F2> :NERDTreeToggle<CR>
-map <F3> :only<CR>
-map <C-E><C-F> :%JavaFormat<CR>
-map <C-E><C-H> :%!tidy -mqi --doctype omit --show-body-only true --show-warnings no --vertical-space no --wrap 0 -latin1<CR>
-map <C-E><C-X> :%!tidy -mqi --doctype omit --show-body-only true --show-warnings no --vertical-space no --wrap 0 -latin1 -xml<CR>
-
-nnoremap <A-Down> :m .+1<CR>==
-nnoremap <A-Up> :m .-2<CR>==
-inoremap <A-Down> <Esc>:m .+1<CR>==gi
-inoremap <A-Up> <Esc>:m .-2<CR>==gi
-vnoremap <A-Down> :m '>+1<CR>gv=gv
-vnoremap <A-Up> :m '<-2<CR>gv=gv
-
-inoremap <C-Return> <CR><CR><C-o>k<Tab>
-
-noremap <expr> <Home> (col('.') == matchend(getline('.'), '^\s*')+1 ? '0' : '^')
-noremap <expr> <End> (col('.') == match(getline('.'), '\s*$') ? '$' : 'g_')
-vnoremap <expr> <End> (col('.') == match(getline('.'), '\s*$') ? '$h' : 'g_')
-imap <Home> <C-o><Home>
-imap <End> <C-o><End>
-
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
-autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap } <c-r>=ClosePair('}')<CR>
-inoremap } <c-r>=CloseBracket()<CR>
-inoremap " <c-r>=QuoteDelim('"')<CR>
-inoremap ' <c-r>=QuoteDelim("'")<CR>
-
-function ClosePair(char)
-  if getline('.')[col('.') - 1] == a:char
-    return "\<Right>"
-  else
-    return a:char
-  endif
-endf
-
-function CloseBracket()
-  if match(getline(line('.') + 1), '\s*}') < 0
-    return "\<CR>}"
- else
-   return "\<Esc>j0f}a"
- endif
-endf
-
-function QuoteDelim(char)
-  let line = getline('.')
-  let col = col('.')
-  if line[col - 2] == "\\"
-    "Inserting a quoted quotation mark into the string
-    return a:char
-  elseif line[col - 1] == a:char
-    "Escaping out of the string
-    return "\<Right>"
-  else
-    "Starting a string
-    return a:char.a:char."\<Esc>i"
-  endif
-endf
-
-function! DoPrettyXML()
-  let l:origft = &ft
-  set ft=
-  1s/<?xml .*?>//e
-  0put ='<PrettyXML>'
-  $put ='</PrettyXML>'
-  silent %!xmllint --format -
-  2d
-  $d
-  silent %<
-  1
-  exe "set ft=" . l:origft
-endfunction
-command! PrettyXML call DoPrettyXML()
