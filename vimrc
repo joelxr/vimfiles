@@ -14,25 +14,38 @@ Plugin 'vim-scripts/snipMate'
 Plugin 'vim-scripts/AutoClose'
 Plugin 'vim-scripts/css_color'
 Plugin 'vim-scripts/Buffergator'
-Plugin 'Lokaltog/vim-powerline'
+Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/AutoComplPop'
 Plugin 'Yggdroot/indentLine'
+Plugin 'bling/vim-bufferline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
+Plugin 'altercation/vim-colors-solarized'
+
 
 call vundle#end()
 syntax on
 filetype plugin indent on
 
-if has("gui_running")
-   if has("gui_gtk2")
-		set guifont=Inconsolata\ 12
-	elseif has("gui_win32")
-		set guifont=Consolas:h11:cANSI
-	endif
-endif
+"if has("gui_running")
+"   if has("gui_gtk2")
+"		set guifont=Inconsolata\ 12
+"	endif
+"endif
 
-colorscheme vividchalk
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+ endif
+
+"colorscheme vividchalk
+
+set background=dark
+colorscheme solarized
 
 set autochdir
 set nocompatible
