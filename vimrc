@@ -24,25 +24,23 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
 Plugin 'altercation/vim-colors-solarized'
-
+Plugin 'lilydjwg/colorizer'
 
 call vundle#end()
 syntax on
 filetype plugin indent on
 
-"if has("gui_running")
-"   if has("gui_gtk2")
-"		set guifont=Inconsolata\ 12
-"	endif
-"endif
+if has("gui_running")
+   if has("gui_gtk2")
+		set guifont=Inconsolata\ 12
+	endif
+endif
 
 if has('gui_running')
     set background=light
 else
     set background=dark
  endif
-
-"colorscheme vividchalk
 
 set background=dark
 colorscheme solarized
@@ -82,3 +80,5 @@ set wildmenu
 set wildmode=list:longest,full
 set mps+=<:>
 set guioptions-=T
+
+let g:tex_conceal = ""
