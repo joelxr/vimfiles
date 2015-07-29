@@ -1,5 +1,5 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 
 set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim
 call vundle#begin()
@@ -8,56 +8,44 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rstacruz/sparkup'
 Plugin 'L9'
-Plugin 'FuzzyFinder'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/snipMate'
 Plugin 'vim-scripts/AutoClose'
 Plugin 'vim-scripts/Buffergator'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/AutoComplPop'
 Plugin 'Yggdroot/indentLine'
-Plugin 'bling/vim-bufferline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'lilydjwg/colorizer'
+Plugin 'chrisbra/csv.vim'
+Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'Shougo/neocomplete'
 
 call vundle#end()
+syntax on
 filetype plugin indent on
 
 if has('gui_running')
-    set guifont=Consolas:h16:cANSI
-    set background=dark
-else
-   set background=light
+   set guifont=Consolas:h16:cANSI
+   set background=dark
 endif
 
 colorscheme solarized
 
-map <C-B> "+gP
+map <C-Ins> "+gP
 map <F2> :NERDTreeToggle<CR>
-map <F3> :only<CR>
-
+map <F3> :TagbarOpen<CR>
+map <F4> :only<CR>
+nmap <F11> <Plug>Colorizer
 nnoremap <A-Down> :m .+1<CR>==
 nnoremap <A-Up> :m .-2<CR>==
 inoremap <A-Down> <Esc>:m .+1<CR>==gi
 inoremap <A-Up> <Esc>:m .-2<CR>==gi
 vnoremap <A-Down> :m '>+1<CR>gv=gv
 vnoremap <A-Up> :m '<-2<CR>gv=gv
-
 inoremap <C-Return> <CR><CR><C-o>k<Tab>
-
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
-autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap } <c-r>=ClosePair('}')<CR>
-inoremap " <c-r>=QuoteDelim('"')<CR>
-inoremap ' <c-r>=QuoteDelim("'")<CR>
 
 set autochdir
 set nocompatible
@@ -95,52 +83,27 @@ set wildmode=list:longest,full
 set mps+=<:>
 set guioptions-=T
 
-
-function ClosePair(char)
-  if getline('.')[col('.') - 1] == a:char
-    return "\<Right>"
-  else
-    return a:char
-  endif
-endf
-
-function CloseBracket()
-  if match(getline(line('.') + 1), '\s*}') < 0
-    return "\<CR>}"
- else
-   return "\<Esc>j0f}a"
- endif
-endf
-
-function QuoteDelim(char)
-  let line = getline('.')
-  let col = col('.')
-  if line[col - 2] == "\\"
-    "Inserting a quoted quotation mark into the string
-    return a:char
-  elseif line[col - 1] == a:char
-    "Escaping out of the string
-    return "\<Right>"
-  else
-    "Starting a string
-    return a:char.a:char."\<Esc>i"
-  endif
-endf
-
-function! DoPrettyXML()
-  let l:origft = &ft
-  set ft=
-  1s/<?xml .*?>//e
-  0put ='<PrettyXML>'
-  $put ='</PrettyXML>'
-  silent %!xmllint --format -
-  2d
-  $d
-  silent %<
-  1
-  exe "set ft=" . l:origft
-endfunction
-command! PrettyXML call DoPrettyXML()
-
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 40
+let g:tagbar_autoclose = 1
+let g:tagbar_iconchars = ['▸', '▾']
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
