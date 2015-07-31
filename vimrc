@@ -10,7 +10,6 @@ Plugin 'rstacruz/sparkup'
 Plugin 'L9'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/snipMate'
-Plugin 'vim-scripts/AutoClose'
 Plugin 'vim-scripts/Buffergator'
 Plugin 'bling/vim-airline'
 Plugin 'Yggdroot/indentLine'
@@ -24,6 +23,13 @@ Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'Shougo/neocomplete'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'bling/vim-bufferline'
+Plugin 'tfnico/vim-gradle'
+Plugin 'Raimondi/delimitMate'
+Plugin 'docunext/closetag.vim'
+Plugin 'kevinw/pyflakes-vim'
+Plugin 'vim-scripts/SearchComplete'
+Plugin 'mbbill/undotree'
 
 call vundle#end()
 syntax on
@@ -40,6 +46,7 @@ map <C-Ins> "+gP
 map <F2> :NERDTreeToggle<CR>
 map <F3> :TagbarOpen<CR>
 map <F4> :only<CR>
+nnoremap <F5> :UndotreeToggle<CR>
 nmap <F11> <Plug>Colorizer
 nnoremap <A-Down> :m .+1<CR>==
 nnoremap <A-Up> :m .-2<CR>==
@@ -84,6 +91,15 @@ set wildmenu
 set wildmode=list:longest,full
 set mps+=<:>
 set guioptions-=T
+set lazyredraw
+set magic
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+set nobackup
+set nowb
+set noswapfile
 
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 40
@@ -109,6 +125,11 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+if has("persistent_undo")
+    set undodir='~/.undodir/'
+    set undofile
 endif
 
 function! s:my_cr_function()
