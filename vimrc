@@ -4,13 +4,10 @@ filetype off
 set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'L9'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'rstacruz/sparkup'
-Plugin 'L9'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/snipMate'
-Plugin 'vim-scripts/Buffergator'
 Plugin 'bling/vim-airline'
 Plugin 'Yggdroot/indentLine'
 Plugin 'airblade/vim-gitgutter'
@@ -22,7 +19,6 @@ Plugin 'chrisbra/csv.vim'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'Shougo/neocomplete'
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 Plugin 'bling/vim-bufferline'
 Plugin 'tfnico/vim-gradle'
 Plugin 'Raimondi/delimitMate'
@@ -30,24 +26,36 @@ Plugin 'docunext/closetag.vim'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'vim-scripts/SearchComplete'
 Plugin 'mbbill/undotree'
+Plugin 'vim-scripts/vim-webdevicons'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-shell'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-scripts/Buffergator'
 
 call vundle#end()
 syntax on
 filetype plugin indent on
 
 if has('gui_running')
-   set guifont=Consolas:h16:cANSI
+   set guifont=Inconsolata\ for\ Powerline:h16:cDEFAULT
    set background=dark
 endif
 
 colorscheme solarized
 
-map <C-Ins> "+gP
-map <F2> :NERDTreeToggle<CR>
-map <F3> :TagbarOpen<CR>
-map <F4> :only<CR>
-nnoremap <F5> :UndotreeToggle<CR>
-nmap <F11> <Plug>Colorizer
+noremap <C-Ins> "+gP<CR>
+map <F2> :only<CR>
+map <F3> :NERDTreeToggle<CR>
+map <F4> :TagbarOpen<CR>
+map <F5> :Autoformat<CR>
+nmap <F7> <Plug>Colorizer
+nnoremap <F8> :UndotreeToggle<CR>
+nnoremap <silent> <F9> :NERDTreeFind<CR>
 nnoremap <A-Down> :m .+1<CR>==
 nnoremap <A-Up> :m .-2<CR>==
 inoremap <A-Down> <Esc>:m .+1<CR>==gi
@@ -55,13 +63,28 @@ inoremap <A-Up> <Esc>:m .-2<CR>==gi
 vnoremap <A-Down> :m '>+1<CR>gv=gv
 vnoremap <A-Up> :m '<-2<CR>gv=gv
 inoremap <C-Return> <CR><CR><C-o>k<Tab>
+noremap <Leader>ga :Gwrite<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gsh :Gpush<CR>
+noremap <Leader>gll :Gpull<CR>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gb :Gblame<CR>
+noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gr :Gremove<CR>
+noremap <leader>z :bp<CR>
+noremap <leader>q :bp<CR>
+noremap <leader>x :bn<CR>
+noremap <leader>w :bn<CR>
+noremap <leader>c :bd<CR>
 
 set autochdir
 set nocompatible
 set showcmd
 set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
 set number
-set showbreak=...
+set breakindent
 set wrap linebreak nolist
 set backspace=indent,eol,start
 set history=1000
@@ -77,7 +100,6 @@ set autoindent
 set smartindent
 set softtabstop=3
 set tabstop=3
-set nowrap
 set linebreak
 set foldmethod=indent
 set foldnestmax=3
@@ -93,16 +115,19 @@ set mps+=<:>
 set guioptions-=T
 set lazyredraw
 set magic
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
 set nobackup
 set nowb
 set noswapfile
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 40
+let g:NERDTreeChDirMode=2
+let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:tagbar_autoclose = 1
 let g:tagbar_iconchars = ['▸', '▾']
 let g:neocomplete#enable_at_startup = 1
@@ -116,6 +141,26 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:airline_theme = 'powerlineish'
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:session_directory = "~/.vim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_auto_loc_list=1
+let g:syntastic_aggregate_errors = 1
+let g:javascript_enable_domhtmlcss = 1
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -135,3 +180,27 @@ endif
 function! s:my_cr_function()
   return neocomplete#close_popup() . "\<CR>"
 endfunction
+
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+   exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+   exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#151515')
+call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#151515')
