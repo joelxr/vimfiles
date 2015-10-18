@@ -36,13 +36,17 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/Buffergator'
+Plugin 'NLKNguyen/copy-cut-paste.vim'
+Plugin 'unblevable/quick-scope' 
+Plugin 'reedes/vim-lexical'
+Bundle 'mateusbraga/vim-spell-pt-br'
 
 call vundle#end()
 syntax on
 filetype plugin indent on
 
 if has('gui_running')
-   set guifont=Inconsolata\ for\ Powerline:h16:cDEFAULT
+   set guifont=Meslo\ LG\ L\ DZ\ for\ Powerline\ PNF:h11:cDEFAULT
    set background=dark
 endif
 
@@ -76,6 +80,8 @@ noremap <leader>q :bp<CR>
 noremap <leader>x :bn<CR>
 noremap <leader>w :bn<CR>
 noremap <leader>c :bd<CR>
+noremap 0 ^
+noremap ^ 0
 
 set autochdir
 set nocompatible
@@ -145,21 +151,23 @@ let g:airline_theme = 'powerlineish'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts= 1
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:session_directory = "~/.vim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
+let g:session_autoload = "yes"
+let g:session_autosave = "yes"
 let g:session_command_aliases = 1
 let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 let g:javascript_enable_domhtmlcss = 1
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -169,12 +177,12 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
 if has("persistent_undo")
-    set undodir='~/.undodir/'
-    set undofile
+   set undodir='~/.undodir/'
+   set undofile
 endif
 
 function! s:my_cr_function()
