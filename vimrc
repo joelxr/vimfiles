@@ -25,13 +25,13 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'docunext/closetag.vim'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'vim-scripts/SearchComplete'
-Plugin 'mbbill/undotree'
+"Plugin 'mbbill/undotree'
 Plugin 'vim-scripts/vim-webdevicons'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'xolox/vim-shell'
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-session'
+"Plugin 'xolox/vim-shell'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
@@ -39,14 +39,15 @@ Plugin 'vim-scripts/Buffergator'
 Plugin 'NLKNguyen/copy-cut-paste.vim'
 Plugin 'unblevable/quick-scope' 
 Plugin 'reedes/vim-lexical'
-Bundle 'mateusbraga/vim-spell-pt-br'
+Plugin 'mateusbraga/vim-spell-pt-br'
+Plugin 'vim-scripts/Align'
 
 call vundle#end()
 syntax on
 filetype plugin indent on
 
 if has('gui_running')
-   set guifont=Meslo\ LG\ L\ DZ\ for\ Powerline\ PNF:h11:cDEFAULT
+   set guifont=Meslo\ LG\ L\ DZ\ for\ Powerline\ PNF:h12:cDEFAULT
    set background=dark
 endif
 
@@ -58,7 +59,7 @@ map <F3> :NERDTreeToggle<CR>
 map <F4> :TagbarOpen<CR>
 map <F5> :Autoformat<CR>
 nmap <F7> <Plug>Colorizer
-nnoremap <F8> :UndotreeToggle<CR>
+"nnoremap <F8> :UndotreeToggle<CR>
 nnoremap <silent> <F9> :NERDTreeFind<CR>
 nnoremap <A-Down> :m .+1<CR>==
 nnoremap <A-Up> :m .-2<CR>==
@@ -126,6 +127,7 @@ set nowb
 set noswapfile
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 
+let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 40
 let g:NERDTreeChDirMode=2
@@ -147,27 +149,23 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:airline_theme = 'powerlineish'
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts= 1
-let g:airline#extensions#virtualenv#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:session_directory = "~/.vim/session"
-let g:session_autoload = "yes"
-let g:session_autosave = "yes"
-let g:session_command_aliases = 1
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_aggregate_errors = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:airline_theme = 'solarized'
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+" let g:session_directory = "~/.vim/session"
+" let g:session_autoload = "no"
+" let g:session_autosave = "no"
+" let g:session_command_aliases = 1
 let g:javascript_enable_domhtmlcss = 1
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -178,11 +176,6 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
    let g:neocomplete#sources#omni#input_patterns = {}
-endif
-
-if has("persistent_undo")
-   set undodir='~/.undodir/'
-   set undofile
 endif
 
 function! s:my_cr_function()
