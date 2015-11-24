@@ -41,13 +41,16 @@ Plugin 'unblevable/quick-scope'
 Plugin 'reedes/vim-lexical'
 Plugin 'mateusbraga/vim-spell-pt-br'
 Plugin 'vim-scripts/Align'
+Plugin 'dciccale/guizoom.vim'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end()
 syntax on
 filetype plugin indent on
 
 if has('gui_running')
-   set guifont=Meslo\ LG\ L\ DZ\ for\ Powerline\ PNF:h12:cDEFAULT
+   set guifont=Meslo\ LG\ L\ DZ\ for\ Powerline:h12:cDEFAULT
    set background=dark
 endif
 
@@ -60,6 +63,9 @@ map <F4> :TagbarOpen<CR>
 map <F5> :Autoformat<CR>
 nmap <F7> <Plug>Colorizer
 "nnoremap <F8> :UndotreeToggle<CR>
+nmap <Leader>= :ZoomIn<CR>
+nmap <Leader>- :ZoomOut<CR>
+nmap <Leader>0 :ZoomReset<CR>
 nnoremap <silent> <F9> :NERDTreeFind<CR>
 nnoremap <A-Down> :m .+1<CR>==
 nnoremap <A-Up> :m .-2<CR>==
@@ -84,6 +90,7 @@ noremap <leader>c :bd<CR>
 noremap 0 ^
 noremap ^ 0
 
+set mouse=a
 set autochdir
 set nocompatible
 set showcmd
@@ -126,6 +133,8 @@ set nobackup
 set nowb
 set noswapfile
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
+set spell
+set spelllang=pt_br
 
 let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 2
@@ -138,6 +147,7 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:tagbar_autoclose = 1
 let g:tagbar_iconchars = ['▸', '▾']
+let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
@@ -167,6 +177,7 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " let g:session_autosave = "no"
 " let g:session_command_aliases = 1
 let g:javascript_enable_domhtmlcss = 1
+let g:vimtex_enabled = 1
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -174,9 +185,16 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-if !exists('g:neocomplete#sources#omni#input_patterns')
-   let g:neocomplete#sources#omni#input_patterns = {}
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
 endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 function! s:my_cr_function()
   return neocomplete#close_popup() . "\<CR>"
