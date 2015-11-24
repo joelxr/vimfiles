@@ -44,6 +44,7 @@ Plugin 'vim-scripts/Align'
 Plugin 'dciccale/guizoom.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'kien/ctrlp.vim' 
 
 call vundle#end()
 syntax on
@@ -60,7 +61,7 @@ noremap <C-Ins> "+gP<CR>
 map <F2> :only<CR>
 map <F3> :NERDTreeToggle<CR>
 map <F4> :TagbarOpen<CR>
-map <F5> :Autoformat<CR>
+map <F6> :Autoformat<CR>
 nmap <F7> <Plug>Colorizer
 "nnoremap <F8> :UndotreeToggle<CR>
 nmap <Leader>= :ZoomIn<CR>
@@ -137,14 +138,21 @@ set spell
 set spelllang=pt_br
 
 let g:tex_conceal = ""
-let g:NERDTreeMouseMode = 2
-let g:NERDTreeWinSize = 40
+let g:NERDTreeMouseMode = 1
+let g:NERDTreeWinSize = 45
 let g:NERDTreeChDirMode=2
-let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
-let g:NERDTreeShowBookmarks=1
+let g:NERDTreeMinimalUI = 1
+"let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
+"let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
+let g:NERDTreeShowBookmarks=0
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeCaseSensitiveSort = 0
+let g:NERDTreeWinPos = "right"
 let g:tagbar_autoclose = 1
 let g:tagbar_iconchars = ['▸', '▾']
 let g:acp_enableAtStartup = 0
