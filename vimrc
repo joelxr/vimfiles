@@ -128,6 +128,7 @@ set wildmenu
 set wildmode=list:longest,full
 set mps+=<:>
 set guioptions-=T
+set guioptions-=m
 set lazyredraw
 set magic
 set nobackup
