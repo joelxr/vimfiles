@@ -37,21 +37,21 @@ Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/Buffergator'
 Plugin 'NLKNguyen/copy-cut-paste.vim'
-Plugin 'unblevable/quick-scope' 
+Plugin 'unblevable/quick-scope'
 Plugin 'reedes/vim-lexical'
 Plugin 'mateusbraga/vim-spell-pt-br'
 Plugin 'vim-scripts/Align'
 Plugin 'dciccale/guizoom.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'kien/ctrlp.vim' 
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 syntax on
 filetype plugin indent on
 
 if has('gui_running')
-   set guifont=Meslo\ LG\ L\ DZ\ for\ Powerline:h12:cDEFAULT
+   set guifont=Hack:h12:cDEFAULT
    set background=dark
 endif
 
@@ -138,6 +138,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 set spell
 set spelllang=pt_br
 
+
 let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeWinSize = 29
@@ -213,3 +214,10 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
    exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
    exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
+
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+au ColorScheme * highlight ExtraWhitespace guibg=red
+au BufEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhiteSpace /\s\+$/
