@@ -16,10 +16,10 @@ Plugin 'majutsushi/tagbar'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'lilydjwg/colorizer'
 Plugin 'chrisbra/csv.vim'
-Plugin 'jmcantrell/vim-virtualenv'
+"Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'Shougo/neocomplete'
 Plugin 'SirVer/ultisnips'
-Plugin 'bling/vim-bufferline'
+"Plugin 'bling/vim-bufferline'
 Plugin 'tfnico/vim-gradle'
 Plugin 'Raimondi/delimitMate'
 Plugin 'docunext/closetag.vim'
@@ -27,7 +27,7 @@ Plugin 'kevinw/pyflakes-vim'
 Plugin 'vim-scripts/SearchComplete'
 "Plugin 'mbbill/undotree'
 "Plugin 'vim-scripts/vim-webdevicons'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Chiel92/vim-autoformat'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-session'
@@ -35,8 +35,8 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/Buffergator'
-Plugin 'NLKNguyen/copy-cut-paste.vim'
+"Plugin 'vim-scripts/Buffergator'
+"Plugin 'NLKNguyen/copy-cut-paste.vim'
 Plugin 'unblevable/quick-scope'
 Plugin 'reedes/vim-lexical'
 Plugin 'mateusbraga/vim-spell-pt-br'
@@ -44,7 +44,7 @@ Plugin 'vim-scripts/Align'
 Plugin 'dciccale/guizoom.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'kien/ctrlp.vim'
+"Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 syntax on
@@ -75,21 +75,17 @@ inoremap <A-Up> <Esc>:m .-2<CR>==gi
 vnoremap <A-Down> :m '>+1<CR>gv=gv
 vnoremap <A-Up> :m '<-2<CR>gv=gv
 inoremap <C-Return> <CR><CR><C-o>k<Tab>
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gsh :Gpush<CR>
-noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
-noremap <leader>z :bp<CR>
-noremap <leader>q :bp<CR>
-noremap <leader>x :bn<CR>
-noremap <leader>w :bn<CR>
-noremap <leader>c :bd<CR>
 noremap 0 ^
 noremap ^ 0
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
 set mouse=a
 set autochdir
@@ -129,6 +125,7 @@ set wildmode=list:longest,full
 set mps+=<:>
 set guioptions-=T
 set guioptions-=m
+set guioptions-=r
 set lazyredraw
 set magic
 set nobackup
@@ -137,7 +134,6 @@ set noswapfile
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 set spell
 set spelllang=pt_br
-
 
 let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 1
@@ -175,12 +171,18 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_aggregate_errors = 1
 let g:airline_theme = 'solarized'
+let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ' '
+let g:airline#extensions#tabline#buffer_idx_mode = 0
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " let g:session_directory = "~/.vim/session"
 " let g:session_autoload = "no"
