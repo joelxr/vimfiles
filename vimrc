@@ -126,6 +126,7 @@ set mps+=<:>
 set guioptions-=T
 set guioptions-=m
 set guioptions-=r
+set guioptions-=L
 set lazyredraw
 set magic
 set nobackup
