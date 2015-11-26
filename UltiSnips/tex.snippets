@@ -6,3 +6,26 @@ snippet fig
 \caption{$3}
 \end{figure}
 endsnippet
+
+snippet begin
+\begin{$1}
+	$3
+\end{$2}
+endsnippet
+
+snippet enum
+\begin{enumerate}
+	\item $1
+\end{enumerate}
+endsnippet
+
+snippet table
+\begin{table}[h]
+	\centering
+	\begin{tabular}{$1}
+	$2
+	\end{tabular}
+	\caption{$3}
+	\label{table:$4}
+\end{table}
+endsnippet
