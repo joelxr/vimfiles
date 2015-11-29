@@ -45,6 +45,8 @@ Plugin 'dciccale/guizoom.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'nathanaelkane/vim-indent-guides'
 "Plugin 'kien/ctrlp.vim'
+Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'wincent/Command-T'
 
 call vundle#end()
 syntax on
@@ -112,9 +114,6 @@ set smartindent
 set softtabstop=3
 set tabstop=3
 set linebreak
-set foldmethod=indent
-set foldnestmax=3
-set nofoldenable
 set linespace=3
 set ic
 set smartcase
@@ -132,7 +131,6 @@ set magic
 set nobackup
 set nowb
 set noswapfile
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 set spell
 set spelllang=pt_br
 
@@ -191,12 +189,15 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " let g:session_command_aliases = 1
 let g:javascript_enable_domhtmlcss = 1
 let g:vimtex_enabled = 1
+let g:LatexBox_Folding = 1
+let g:LatexBox_fold_text = 1
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
