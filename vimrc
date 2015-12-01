@@ -16,27 +16,17 @@ Plugin 'majutsushi/tagbar'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'lilydjwg/colorizer'
 Plugin 'chrisbra/csv.vim'
-"Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'Shougo/neocomplete'
 Plugin 'SirVer/ultisnips'
-"Plugin 'bling/vim-bufferline'
 Plugin 'tfnico/vim-gradle'
 Plugin 'Raimondi/delimitMate'
 Plugin 'docunext/closetag.vim'
 Plugin 'kevinw/pyflakes-vim'
 Plugin 'vim-scripts/SearchComplete'
-"Plugin 'mbbill/undotree'
-"Plugin 'vim-scripts/vim-webdevicons'
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Chiel92/vim-autoformat'
-"Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-session'
-"Plugin 'xolox/vim-shell'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
-"Plugin 'vim-scripts/Buffergator'
-"Plugin 'NLKNguyen/copy-cut-paste.vim'
 Plugin 'unblevable/quick-scope'
 Plugin 'reedes/vim-lexical'
 Plugin 'mateusbraga/vim-spell-pt-br'
@@ -44,9 +34,7 @@ Plugin 'vim-scripts/Align'
 Plugin 'dciccale/guizoom.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'nathanaelkane/vim-indent-guides'
-"Plugin 'kien/ctrlp.vim'
 Plugin 'artur-shaik/vim-javacomplete2'
-Plugin 'wincent/Command-T'
 
 call vundle#end()
 syntax on
@@ -65,7 +53,6 @@ map <F3> :NERDTreeToggle<CR>
 map <F4> :TagbarOpen<CR>
 map <F6> :Autoformat<CR>
 nmap <F7> <Plug>Colorizer
-"nnoremap <F8> :UndotreeToggle<CR>
 nmap <Leader>= :ZoomIn<CR>
 nmap <Leader>- :ZoomOut<CR>
 nmap <Leader>0 :ZoomReset<CR>
@@ -88,6 +75,7 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+map <F12> :silent !pdflatex %:p <CR>
 
 set mouse=a
 set autochdir
@@ -139,8 +127,6 @@ let g:NERDTreeMouseMode = 1
 let g:NERDTreeWinSize = 29
 let g:NERDTreeChDirMode=2
 let g:NERDTreeMinimalUI = 1
-"let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
-"let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=0
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
@@ -183,14 +169,12 @@ let g:airline#extensions#tabline#buffer_idx_mode = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-" let g:session_directory = "~/.vim/session"
-" let g:session_autoload = "no"
-" let g:session_autosave = "no"
-" let g:session_command_aliases = 1
 let g:javascript_enable_domhtmlcss = 1
 let g:vimtex_enabled = 1
 let g:LatexBox_Folding = 1
 let g:LatexBox_fold_text = 1
+let g:LatexBox_fold_toc = 1
+let g:LatexBox_fold_toc_levels = 1
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
