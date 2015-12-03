@@ -44,7 +44,7 @@ syntax on
 filetype plugin indent on
 
 if has('gui_running')
-   set guifont=Hack:h12:cDEFAULT
+   set guifont=Hack:h14:cDEFAULT
    set background=dark
 endif
 
@@ -70,6 +70,7 @@ inoremap <C-Return> <CR><CR><C-o>k<Tab>
 noremap 0 ^
 noremap ^ 0
 map <F12> :silent !pdflatex %:p <CR>
+nmap 9 $
 
 set mouse=a
 set autochdir
