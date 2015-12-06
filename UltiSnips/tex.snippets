@@ -10,13 +10,20 @@ endsnippet
 snippet begin
 \begin{$1}
 	$3
-\end{$2}
+\end{$1}
 endsnippet
 
 snippet enum
 \begin{enumerate}
 	\item $1
 \end{enumerate}
+endsnippet
+
+snippet item
+\begin{itemize}
+	\item $1
+\end{itemize}
+
 endsnippet
 
 snippet table
@@ -44,4 +51,21 @@ endsnippet
  
 snippet sc
 \textsc{$1}
+endsnippet
+
+snippet fr
+\begin{frame}{$1}
+$2
+\end{frame}
+endsnippet
+
+snippet bloc
+\begin{block}{$1}
+$2
+\end{block}
+endsnippet
+
+snippet ps
+\pause
+$1
 endsnippet
