@@ -27,14 +27,12 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
-Plugin 'unblevable/quick-scope'
 Plugin 'reedes/vim-lexical'
 Plugin 'mateusbraga/vim-spell-pt-br'
 Plugin 'vim-scripts/Align'
 Plugin 'dciccale/guizoom.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-shell'
 Plugin 'xolox/vim-easytags'
@@ -44,15 +42,15 @@ syntax on
 filetype plugin indent on
 
 if has("gui_running")
-  if has("gui_gtk2")
-    set guifont=Hack\ 12
-  elseif has("gui_photon")
-    set guifont=Hack:s12
-  elseif has("gui_kde")
-    set guifont=Hack/12/-1/5/50/0/0/0/1/0
-  else
-    set guifont=Hack:h12:cDEFAULT
-  endif
+   if has("gui_gtk2")
+      set guifont=Hack\ 12
+   elseif has("gui_photon")
+      set guifont=Hack:s12
+   elseif has("gui_kde")
+      set guifont=Hack/12/-1/5/50/0/0/0/1/0
+   else
+      set guifont=Hack:h12:cDEFAUL
+   endif
 endif
 
 colorscheme solarized
