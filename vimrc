@@ -44,7 +44,7 @@ syntax on
 filetype plugin indent on
 
 if has('gui_running')
-   set guifont=Hack:h14:cDEFAULT
+   set guifont=Hack:h12:cDEFAULT
 endif
 
 colorscheme tomorrow-night
@@ -281,11 +281,13 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
-highlight ExtraWhitespace ctermbg=red guibg=red
-au ColorScheme * highlight ExtraWhitespace guibg=red
-au BufEnter * match ExtraWhitespace /\s\+$/
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhiteSpace /\s\+$/
+autocmd FileType java let b:codefmt_formatter = 'clang-format'
+
+"highlight ExtraWhitespace ctermbg=red guibg=red
+"au ColorScheme * highlight ExtraWhitespace guibg=red
+"au BufEnter * match ExtraWhitespace /\s\+$/
+"au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"au InsertLeave * match ExtraWhiteSpace /\s\+$/
 
 "au BufWrite *.java !astyle %:p
 "au BufWrite *.js !js-beautify -f %:p -o %:p
