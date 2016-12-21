@@ -1,7 +1,7 @@
 set nocompatible
 filetype off
 
-set rtp+=$USERPROFILE/vimfiles/bundle/Vundle.vim
+set rtp+=$USERPROFILE/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'L9'
@@ -117,10 +117,9 @@ set nobackup
 set nowb
 set noswapfile
 set spell
-set spelllang=pt_br
+set spelllang=pt
 
 let g:tex_conceal = ""
-
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeWinSize = 29
 let g:NERDTreeChDirMode=2
@@ -150,7 +149,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'tomorrow'
 
 if !exists('g:airline_symbols')
    let g:airline_symbols = {}
@@ -264,11 +263,8 @@ let g:airline_mode_map = {
          \ '' : 'S-B',
          \ }
 
-
 let g:javascript_enable_domhtmlcss = 1
-
 let g:vimtex_enabled = 1
-
 let g:LatexBox_Folding = 1
 let g:LatexBox_fold_text = 1
 let g:LatexBox_fold_toc = 1
@@ -280,16 +276,52 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
 autocmd FileType java let b:codefmt_formatter = 'clang-format'
 
-"highlight ExtraWhitespace ctermbg=red guibg=red
-"au ColorScheme * highlight ExtraWhitespace guibg=red
-"au BufEnter * match ExtraWhitespace /\s\+$/
-"au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-"au InsertLeave * match ExtraWhiteSpace /\s\+$/
-
-"au BufWrite *.java !astyle %:p
-"au BufWrite *.js !js-beautify -f %:p -o %:p
-"au BufWrite *.html !html-beautify -f %:p -o %:p
-"au BufWrite *.css !css-beautify -f %:p -o %:p
+iab eh é
+iab vc você
+iab voce você
+iab vcs vocês
+iab voces vocês
+iab pq por que
+iab kd cadê
+iab nao não
+iab adimissão admissão
+iab adimitir admitir
+iab adivogado advogado
+iab aer era
+iab aida ainda
+iab algmu algum
+iab ams mas
+iab an na
+iab angulo ângulo
+iab apos após
+iab apra para
+iab aqeule aquele
+iab aqiulo aquilo
+iab arcoiris arco-íris
+iab ate até
+iab asim assim
+iab aue que
+iab equ que
+iab cafe café
+iab entao então
+iab ha há
+iab ja já
+iab cabeca cabeça
+iab preguica preguiça
+iab acao ação
+iab acucar açúcar
+iab danca dança
+iab endereco endereço
+iab excecao exceção
+iab execao exceção
+iab eleicao eleição
+iab justica justiça
+iab descricao descrição
+iab execucao execução
+iab diferenca diferença
+iab spoiller spoiler
+iab secao seção
+iab realemente realmente
+iab realemnte realmente
