@@ -39,6 +39,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-javascript'
+Plugin 'mhinz/vim-startify'
 
 call vundle#end()
 syntax on
