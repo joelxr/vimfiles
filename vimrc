@@ -53,32 +53,47 @@ if has("gui_running")
    else
       set guifont=Hack:h12:cDEFAULT
    endif
+
+   set guioptions-=T
+   set guioptions-=e\
+   set t_Co=256
+   set guitablabel=%M\ %t
 endif
 
-colorscheme Tomorrow-Night
+try
+   colorscheme solarized
+catch
+endtry
 
-noremap <C-Ins> "+gP<CR>
-map <F2> :only<CR>
-map <F3> :NERDTreeToggle<CR>
-map <F4> :TagbarOpen<CR>
-map <F6> :Autoformat<CR>
-nmap <F7> <Plug>Colorizer
+nmap <Leader>w :w!<cr>
+map <Leader>o :only<CR>
+map <Leader>nt :NERDTreeToggle<CR>
+map <Leader>tg :TagbarOpen<CR>
+map <Leader>cp :CtrlP<CR>
+nmap <Leader>ca :.,$d<CR>
 nmap <Leader>= :ZoomIn<CR>
 nmap <Leader>- :ZoomOut<CR>
 nmap <Leader>0 :ZoomReset<CR>
-nnoremap <silent> <F9> :NERDTreeFind<CR>
-nnoremap <A-Down> :m .+1<CR>==
-nnoremap <A-Up> :m .-2<CR>==
-inoremap <A-Down> <Esc>:m .+1<CR>==gi
-inoremap <A-Up> <Esc>:m .-2<CR>==gi
-vnoremap <A-Down> :m '>+1<CR>gv=gv
-vnoremap <A-Up> :m '<-2<CR>gv=gv
-inoremap <C-Return> <CR><CR><C-o>k<Tab>
+map <Leader>fj :silent !astyle %:p<CR>
+map <Leader>fh :silent !html-beautify -f %:p -o %:p<CR>
+map <Leader>fc :silent !css-beautify -f %:p -o %:p<CR>
+map <Leader>fs :silent !js-beautify -f %:p -o %:p<CR>
+map <Leader>bt :silent !pdflatex %:p<CR>
+map <Leader>bd :Bclose<cr>:tabclose<cr>gT
 noremap 0 ^
 noremap ^ 0
-map <F12> :silent !pdflatex %:p <CR>
 nmap 9 $
+map <space> /
+map <c-space> ?
+map <Leader>ss :setlocal spell!<cr>
+map <Leader>sn ]s
+map <Leader>sp [s
+map <Leader>sa zg
+map <Leader>s? z=
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
+set background=dark
 set mouse=a
 set autochdir
 set nocompatible
@@ -88,10 +103,9 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set number
 set breakindent
-set wrap linebreak
-set list
-set listchars=tab:→\ ,eol:↲
+set wrap linebreak nolist
 set backspace=indent,eol,start
+set whichwrap+=<,>,h,l
 set history=1000
 set showmode
 set gcr=a:blinkon0
@@ -100,15 +114,26 @@ set visualbell
 set autoread
 set expandtab
 set smarttab
-set shiftwidth=3
+set shiftwidth=4
 set autoindent
 set smartindent
-set softtabstop=3
-set tabstop=3
+set softtabstop=4
+set tabstop=4
 set linebreak
-set linespace=3
-set ic
+set linespace=4
+set tw=500
+set ignorecase
 set smartcase
+set hlsearch
+set incsearch
+set lazyredraw
+set showmatch
+set mat=2
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+set foldcolumn=1
 set laststatus=2
 set cursorline
 set wildmenu
@@ -125,7 +150,8 @@ set nowb
 set noswapfile
 set spell
 set spelllang=pt_br
-set background=dark
+set hid
+set ffs=unix,dos,mac
 
 let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 1
@@ -271,7 +297,6 @@ let g:airline_mode_map = {
          \ '' : 'S-B',
          \ }
 
-
 let g:javascript_enable_domhtmlcss = 1
 let g:vimtex_enabled = 1
 let g:LatexBox_Folding = 1
@@ -279,6 +304,13 @@ let g:LatexBox_fold_text = 1
 let g:LatexBox_fold_toc = 1
 let g:LatexBox_fold_toc_levels = 1
 
+func! DeleteTrailingWS()
+   exe "normal mz"
+   %s/\s\+$//ge
+   exe "normal `z"
+endfunc
+
+autocmd BufWrite * :call DeleteTrailingWS()
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -286,7 +318,99 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 autocmd FileType java let b:codefmt_formatter = 'clang-format'
+command! Bclose call <SID>BufcloseCloseIt()
 
-"Invisible character colors 
-highlight NonText guifg=#373b41
-highlight SpecialKey guifg=#373b41
+function! <SID>BufcloseCloseIt()
+   let l:currentBufNum = bufnr("%")
+   let l:alternateBufNum = bufnr("#")
+
+   if buflisted(l:alternateBufNum)
+      buffer #
+   else
+      bnext
+   endif
+
+   if bufnr("%") == l:currentBufNum
+      new
+   endif
+
+   if buflisted(l:currentBufNum)
+      execute("bdelete! ".l:currentBufNum)
+   endif
+endfunction
+
+function! CmdLine(str)
+   exe "menu Foo.Bar :" . a:str
+   emenu Foo.Bar
+   unmenu Foo
+endfunction
+
+function! VisualSelection(direction, extra_filter) range
+   let l:saved_reg = @"
+   execute "normal! vgvy"
+
+   let l:pattern = escape(@", "\\/.*'$^~[]")
+   let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+   if a:direction == 'gv'
+      call CmdLine("Ag '" . l:pattern . "' " )
+   elseif a:direction == 'replace'
+      call CmdLine("%s" . '/'. l:pattern . '/')
+   endif
+
+   let @/ = l:pattern
+   let @" = l:saved_reg
+endfunction
+
+iab eh é
+iab vc você
+iab voce você
+iab vcs vocês
+iab voces vocês
+iab pq por que
+iab kd cadê
+iab nao não
+iab adimissão admissão
+iab adimitir admitir
+iab adivogado advogado
+iab aer era
+iab aida ainda
+iab algmu algum
+iab ams mas
+iab an na
+iab angulo ângulo
+iab apos após
+iab apra para
+iab aqeule aquele
+iab aqiulo aquilo
+iab arcoiris arco-íris
+iab ate até
+iab asim assim
+iab aue que
+iab equ que
+iab cafe café
+iab entao então
+iab ha há
+iab ja já
+iab cabeca cabeça
+iab preguica preguiça
+iab acao ação
+iab acucar açúcar
+iab danca dança
+iab endereco endereço
+iab excecao exceção
+iab execao exceção
+iab eleicao eleição
+iab justica justiça
+iab descricao descrição
+iab execucao execução
+iab diferenca diferença
+iab spoiller spoiler
+iab secao seção
+iab realemente realmente
+iab realemnte realmente
+iab jxr Joel Xavier Rocha
+iab @@ joelxr@gmail.com
+iab hj hoje
+iab blza beleza
+iab bl beleza
