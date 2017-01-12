@@ -145,6 +145,7 @@ set spell
 set spelllang=pt_br
 set hid
 set ffs=unix,dos,mac
+set relativenumber
 
 let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 1
