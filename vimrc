@@ -38,6 +38,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 syntax on
@@ -152,6 +154,9 @@ set spell
 set spelllang=pt_br
 set hid
 set ffs=unix,dos,mac
+set conceallevel=0
+set relativenumber
+set foldmethod=indent
 
 let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 1
