@@ -198,6 +198,9 @@ let g:airline_powerline_fonts = 'fancy'
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 
+let g:qs_first_occurrence_highlight_color = '#586e75'
+let g:qs_second_occurrence_highlight_color = '#586e75'
+
 function! AirLineBlaenk()
     function! Modified()
         return &modified ? " +" : ''
