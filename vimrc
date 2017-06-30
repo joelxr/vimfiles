@@ -65,18 +65,6 @@ endtry
 nmap <Leader>w :w!<cr>
 map <Leader>o :only<CR>
 map <Leader>nt :NERDTreeToggle<CR>
-map <Leader>tg :TagbarOpen<CR>
-map <Leader>cp :CtrlP<CR>
-nmap <Leader>ca :.,$d<CR>
-nmap <Leader>= :ZoomIn<CR>
-nmap <Leader>- :ZoomOut<CR>
-nmap <Leader>0 :ZoomReset<CR>
-map <Leader>fj :silent !astyle %:p<CR>
-map <Leader>fh :silent !html-beautify -f %:p -o %:p<CR>
-map <Leader>fc :silent !css-beautify -f %:p -o %:p<CR>
-map <Leader>fs :silent !js-beautify -f %:p -o %:p<CR>
-map <Leader>bt :silent !pdflatex %:p<CR>
-map <Leader>bd :Bclose<cr>:tabclose<cr>gT
 noremap 0 ^
 noremap ^ 0
 nmap 9 $
@@ -87,7 +75,6 @@ map <Leader>sn ]s
 map <Leader>sp [s
 map <Leader>sa zg
 map <Leader>s? z=
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 
 set background=dark
