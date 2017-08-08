@@ -13,7 +13,6 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Yggdroot/indentLine'
 Plugin 'lilydjwg/colorizer'
 Plugin 'chrisbra/csv.vim'
 Plugin 'tfnico/vim-gradle'
@@ -42,6 +41,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'posva/vim-vue'
 Plugin 'w0rp/ale'
 Plugin 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 syntax on
@@ -146,3 +146,6 @@ let g:NERDTreeCaseSensitiveSort = 0
 let g:NERDTreeNaturalSort = "1"
 let g:airline#extensions#ale#enabled = 1
 let g:javascript_enable_domhtmlcss = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 1
