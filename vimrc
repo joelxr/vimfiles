@@ -6,6 +6,7 @@ call vundle#begin()
 
 Plugin 'L9'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'mhinz/vim-janah'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Lokaltog/vim-easymotion'
@@ -40,6 +41,7 @@ Plugin 'sickill/vim-pasta'
 Plugin 'SirVer/ultisnips'
 Plugin 'posva/vim-vue'
 Plugin 'w0rp/ale'
+Plugin 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 
 call vundle#end()
 syntax on
@@ -53,7 +55,7 @@ if has('gui_running')
     set guitablabel=%M\ %t
 endif
 
-colorscheme solarized
+colorscheme janah
 
 nmap <Leader>w :w!<cr>
 map <Leader>o :only<CR>
@@ -69,7 +71,6 @@ map <Leader>sp [s
 map <Leader>sa zg
 map <Leader>s? z=
 
-set background=dark
 set mouse=a
 set autochdir
 set nocompatible
@@ -130,8 +131,6 @@ set hid
 set ffs=unix,dos,mac
 set relativenumber
 
-let g:solarized_termcolors=256
-let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeWinSize = 33
 let g:NERDTreeChDirMode=2
@@ -144,7 +143,6 @@ let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeCaseSensitiveSort = 0
-let g:NERDTreeWinPos = "left"
 let g:NERDTreeNaturalSort = "1"
 let g:airline#extensions#ale#enabled = 1
 let g:javascript_enable_domhtmlcss = 1
