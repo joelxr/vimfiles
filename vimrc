@@ -4,9 +4,9 @@ filetype off
 set rtp+=$USERPROFILE/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'gmarik/Vundle.vim'
 Plugin 'L9'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'mhinz/vim-janah'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Lokaltog/vim-easymotion'
@@ -15,7 +15,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'lilydjwg/colorizer'
 Plugin 'chrisbra/csv.vim'
-Plugin 'tfnico/vim-gradle'
 Plugin 'Raimondi/delimitMate'
 Plugin 'reedes/vim-lexical'
 Plugin 'mateusbraga/vim-spell-pt-br'
@@ -27,13 +26,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'othree/html5.vim'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'elzr/vim-json'
 Plugin 'yuttie/comfortable-motion.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'gregsexton/matchtag'
 Plugin 'sickill/vim-pasta'
@@ -42,6 +35,7 @@ Plugin 'posva/vim-vue'
 Plugin 'w0rp/ale'
 Plugin 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plugin 'mattn/emmet-vim'
+Plugin 'vim-scripts/npm.vim'
 
 call vundle#end()
 syntax on
@@ -55,7 +49,7 @@ if has('gui_running')
     set guitablabel=%M\ %t
 endif
 
-colorscheme janah
+colorscheme solarized
 
 nmap <Leader>w :w!<cr>
 map <Leader>o :only<CR>
@@ -70,7 +64,10 @@ map <Leader>sn ]s
 map <Leader>sp [s
 map <Leader>sa zg
 map <Leader>s? z=
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
+set background=dark
 set mouse=a
 set autochdir
 set nocompatible
@@ -149,3 +146,13 @@ let g:javascript_enable_domhtmlcss = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
+let delimitMate_expand_cr=1
+
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+
+autocmd FileType vue syntax sync fromstart
