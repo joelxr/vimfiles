@@ -31,6 +31,7 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'gregsexton/matchtag'
 Plugin 'sickill/vim-pasta'
 Plugin 'SirVer/ultisnips'
+Plugin 'joelxr/vim-snippets'
 Plugin 'posva/vim-vue'
 Plugin 'w0rp/ale'
 Plugin 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
@@ -42,7 +43,7 @@ syntax on
 filetype plugin indent on
 
 if has('gui_running')
-    set guifont=Hack:h12:cDEFAULT
+    set guifont=Hack:h11:cDEFAULT
     set guioptions-=T
     set guioptions-=e
     set t_Co=256
@@ -147,6 +148,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
 let delimitMate_expand_cr=1
+let g:ultisnips_javascript = {'keyword-spacing': 'always', 'semi': 'never', 'space-before-function-paren': 'always'}
 
 augroup lexical
   autocmd!
