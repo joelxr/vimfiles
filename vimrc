@@ -4,90 +4,70 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
+Plugin 'gmarik/Vundle.vim'
 Plugin 'L9'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Yggdroot/indentLine'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'lilydjwg/colorizer'
 Plugin 'chrisbra/csv.vim'
-Plugin 'Shougo/neocomplete'
-Plugin 'tfnico/vim-gradle'
 Plugin 'Raimondi/delimitMate'
-Plugin 'docunext/closetag.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'mattn/emmet-vim'
-Plugin 'tpope/vim-surround'
-Plugin 'unblevable/quick-scope'
 Plugin 'reedes/vim-lexical'
 Plugin 'mateusbraga/vim-spell-pt-br'
-Plugin 'vim-scripts/Align'
-Plugin 'dciccale/guizoom.vim'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'junegunn/vim-easy-align'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-shell'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'briancollins/vim-jst'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'yuttie/comfortable-motion.vim'
+Plugin 'myusuf3/numbers.vim'
+Plugin 'gregsexton/matchtag'
+Plugin 'sickill/vim-pasta'
+Plugin 'SirVer/ultisnips'
+Plugin 'posva/vim-vue'
+Plugin 'w0rp/ale'
+Plugin 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+Plugin 'mattn/emmet-vim'
+Plugin 'vim-scripts/npm.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()
 syntax on
 filetype plugin indent on
 
-if has("gui_running")
-    if has("gui_gtk3")
-        set guifont=hack\ 12
-    elseif has("gui_gtk2")
-        set guifont=hack\ 12
-    elseif has("gui_photon")
-        set guifont=Hack:s12
-    elseif has("gui_kde")
-        set guifont=Hack/12/-1/5/50/0/0/0/1/0
-    else
-        set guifont=Hack:h12:cDEFAULT
-    endif
 
-    set guioptions-=T
-    set guioptions-=e\
-    set t_Co=256
-    set guitablabel=%M\ %t
+if has("gui_running")
+  if has("gui_gtk3")
+    set guifont=hack\ 11
+  elseif has("gui_gtk2")
+    set guifont=hack\ 11
+  elseif has("gui_photon")
+    set guifont=Hack:s11
+  elseif has("gui_kde")
+    set guifont=Hack/11/-1/5/50/0/0/0/1/0
+  else
+    set guifont=Hack:h11:cDEFAULT
+  endif
+
+  set guioptions-=T
+  set guioptions-=e\
+  set t_Co=256
+  set guitablabel=%M\ %t
 endif
 
-try
-    colorscheme solarized
-catch
-endtry
+colorscheme solarized
 
-nmap <Leader>w :wall!<cr>
+nmap <Leader>w :w!<cr>
 map <Leader>o :only<CR>
 map <Leader>nt :NERDTreeToggle<CR>
-map <Leader>tg :TagbarOpen<CR>
-map <Leader>cp :CtrlP<CR>
-nmap <Leader>ca :.,$d<CR>
-nmap <Leader>= :ZoomIn<CR>
-nmap <Leader>- :ZoomOut<CR>
-nmap <Leader>0 :ZoomReset<CR>
-map <Leader>fj :silent !astyle %:p<CR>
-map <Leader>fh :silent !html-beautify -f %:p -o %:p<CR>
-map <Leader>fc :silent !css-beautify -f %:p -o %:p<CR>
-map <Leader>fs :silent !js-beautify -f %:p -o %:p<CR>
-map <Leader>bt :silent !pdflatex %:p<CR>
-map <Leader>bd :Bclose<cr>:tabclose<cr>gT
-map <Leader>ld :g/^$/d
 noremap 0 ^
 noremap ^ 0
 nmap 9 $
@@ -98,8 +78,8 @@ map <Leader>sn ]s
 map <Leader>sp [s
 map <Leader>sa zg
 map <Leader>s? z=
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 set background=dark
 set mouse=a
@@ -122,13 +102,13 @@ set visualbell
 set autoread
 set expandtab
 set smarttab
-set shiftwidth=4
+set shiftwidth=2
 set autoindent
 set smartindent
-set softtabstop=4
-set tabstop=4
+set softtabstop=2
+set tabstop=2
 set linebreak
-set linespace=4
+set linespace=2
 set tw=500
 set ignorecase
 set smartcase
@@ -141,7 +121,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-set foldcolumn=1
+set foldcolumn=0
 set laststatus=2
 set cursorline
 set wildmenu
@@ -160,292 +140,34 @@ set spell
 set spelllang=pt_br
 set hid
 set ffs=unix,dos,mac
-set conceallevel=0
 set relativenumber
-set foldmethod=none
-set foldtext=NeatFoldText()
-set fillchars=stl: ,stlnc: ,vert:\|,fold:— ,diff:—
 
-let g:tern_show_argument_hints='on_hold'
-let g:tern_map_keys=1
-"let g:tern#command=['/home/joel/Toolbox/node-v7.4.0-linux-x64/bin/node', '/home/joel/.vim/bundle/tern_for_vim/autoload/../node_modules/tern/bin/tern', '--no-port-file']
 let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 1
-let g:NERDTreeWinSize = 29
+let g:NERDTreeWinSize = 33
 let g:NERDTreeChDirMode=2
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeHidden=1
 let g:NERDTreeShowBookmarks=0
-let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeCaseSensitiveSort = 0
-let g:NERDTreeWinPos = "right"
-
-let g:tagbar_autoclose = 1
-let g:tagbar_iconchars = ['▸', '▾']
-let g:acp_enableAtStartup = 0
-
-let g:neocomplete#enable_at_startup = 2
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 5
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"let g:neocomplete#sources#omni#functions.javascript = ['tern#Complete']
-let g:syntastic_javascript_checkers = ['standard']
-let g:syntastic_javascript_standard_exec = '~/Toolbox/node-v7.4.0-linux-x64/bin/standard'
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_enable_signs=1
-
-let g:airline_theme = 'solarized'
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = 'RO'
-let g:airline_symbols.linenr = ''
-
-let g:airline_powerline_fonts = 'fancy'
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#whitespace#enabled = 0
-
-let g:qs_first_occurrence_highlight_color = '#586e75'
-let g:qs_second_occurrence_highlight_color = '#586e75'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMRU'
-
-function! AirLineBlaenk()
-    function! Modified()
-        return &modified ? " +" : ''
-    endfunction
-
-    call airline#parts#define_raw('filename', '%<%f')
-    call airline#parts#define_function('modified', 'Modified')
-
-    let g:airline_section_b = airline#section#create_left(['filename'])
-    let g:airline_section_c = airline#section#create([''])
-    let g:airline_section_gutter = airline#section#create(['modified', '%='])
-    let g:airline_section_x = airline#section#create_right([''])
-    let g:airline_section_y = airline#section#create_right(['%c'])
-    let g:airline_section_z = airline#section#create(['branch'])
-endfunction
-
-let g:airline_theme_patch_func = 'AirLineBlaenkTheme'
-
-" 0,1: gfg, gbg; 2,3: tfg, tbg; 4: styles
-function! AirLineBlaenkTheme(palette)
-    if g:airline_theme == 'solarized'
-        let purple = ['#ffffff', '#5f5faf', 255, 13, '']
-        let violet = ['#5f5faf', '#aeaed7', 13, 61, '']
-        let inv_purple = ['#5f5faf', '#ffffff', 13, 255, '']
-        let purple_violet = ['#5f5faf', '#aeaed7', 61, 13, '']
-        let a:palette.ctrlp = {
-                    \ 'CtrlPlight' : purple,
-                    \ 'CtrlPwhite' : inv_purple,
-                    \ 'CtrlPdark'  : violet,
-                    \ 'CtrlParrow1': inv_purple,
-                    \ 'CtrlParrow2': purple,
-                    \ 'CtrlParrow3': purple_violet,
-                    \ }
-        let secondary = ['#ffffff', '#657b83', 255, 240, '']
-        let magenta = ['#ffffff', '#d33682', 255, 125, '']
-        let blue = ['#ffffff', '#268bd2', 255, 33, '']
-        let green = ['#ffffff', '#859900', 255, 64, '']
-        let red = ['#ffffff', '#dc322f', 255, 160, '']
-        let orange = ['#ffffff', '#cb4b16', 255, 166, '']
-        let modes = {
-                    \ 'normal': blue,
-                    \ 'insert': green,
-                    \ 'replace': magenta,
-                    \ 'visual': orange
-                    \}
-
-        let a:palette.replace = copy(a:palette.insert)
-        let a:palette.replace_modified = a:palette.insert_modified
-
-        for key in ['insert', 'visual', 'normal']
-            " no red on modified
-            let a:palette[key . '_modified'].airline_c[0] = '#657b83'
-            let a:palette[key . '_modified'].airline_c[2] = 11
-
-            for section in ['a', 'b', 'y', 'z']
-                let airline_section = 'airline_' . section
-
-                if has_key(a:palette[key], airline_section)
-                    " white foreground for most components; better contrast imo
-                    let a:palette[key][airline_section][0] = '#ffffff'
-                    let a:palette[key][airline_section][2] = 255
-                endif
-            endfor
-        endfor
-
-        for key in keys(modes)
-            let a:palette[key].airline_a = modes[key]
-            let a:palette[key].airline_z = modes[key]
-            "let a:palette[key . '_modified'].airline_b = ['#002b36', '#93a1a1', 234, 245]
-            let a:palette[key].airline_b = secondary
-            let a:palette[key].airline_y = secondary
-        endfor
-    endif
-endfunction
-
-let g:airline#extensions#default#section_truncate_width = {
-            \ 'x': 60,
-            \ 'y': 60
-            \ }
-
-let g:airline_mode_map = {
-            \ '__' : '-',
-            \ 'n'  : 'N',
-            \ 'i'  : 'I',
-            \ 'R'  : 'R',
-            \ 'v'  : 'V',
-            \ 'V'  : 'V-L',
-            \ 'c'  : 'C',
-            \ '' : 'V-B',
-            \ 's'  : 'S',
-            \ 'S'  : 'S-L',
-            \ '' : 'S-B',
-            \ }
-
+let g:NERDTreeNaturalSort = "1"
+let g:airline#extensions#ale#enabled = 1
 let g:javascript_enable_domhtmlcss = 1
-let g:vimtex_enabled = 1
-let g:LatexBox_Folding = 1
-let g:LatexBox_fold_text = 1
-let g:LatexBox_fold_toc = 1
-let g:LatexBox_fold_toc_levels = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 1
+let delimitMate_expand_cr=1
 
-func! DeleteTrailingWS()
-    exe "normal mz"
-    %s/\s\+$//ge
-    exe "normal `z"
-endfunc
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
 
-autocmd Vimenter * call AirLineBlaenk()
-autocmd bufwritepost *.js silent !standard --fix %
-autocmd BufWrite * :call DeleteTrailingWS()
-autocmd FileType java let b:codefmt_formatter = 'clang-format'
-command! Bclose call <SID>BufcloseCloseIt()
-autocmd FileType javascript set tabstop=2
-autocmd FileType javascript set expandtab
-autocmd FileType javascript set shiftwidth=2
-autocmd FileType javascript retab
-set completeopt-=preview
-
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
-
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
-
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
-endfunction
-
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", "\\/.*'$^~[]")
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'gv'
-        call CmdLine("Ag '" . l:pattern . "' " )
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-function! NeatFoldText()
-    let line = substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g')
-    let lines_count = v:foldend - v:foldstart + 1
-    let lines_count_text = printf("%10s", lines_count)
-    let foldchar = matchstr(&fillchars, 'fold:\zs.')
-    let foldtextstart =  strpart(repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-    let foldtextend = lines_count_text . repeat(foldchar, 8)
-    let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-    return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
-
-iab eh é
-iab vc você
-iab voce você
-iab vcs vocês
-iab voces vocês
-iab pq por que
-iab kd cadê
-iab nao não
-iab adimissão admissão
-iab adimitir admitir
-iab adivogado advogado
-iab aer era
-iab aida ainda
-iab algmu algum
-iab ams mas
-iab an na
-iab angulo ângulo
-iab apos após
-iab apra para
-iab aqeule aquele
-iab aqiulo aquilo
-iab arcoiris arco-íris
-iab ate até
-iab asim assim
-iab aue que
-iab equ que
-iab cafe café
-iab entao então
-iab ha há
-iab ja já
-iab cabeca cabeça
-iab preguica preguiça
-iab acao ação
-iab acucar açúcar
-iab danca dança
-iab endereco endereço
-iab excecao exceção
-iab execao exceção
-iab eleicao eleição
-iab justica justiça
-iab descricao descrição
-iab execucao execução
-iab diferenca diferença
-iab spoiller spoiler
-iab secao seção
-iab realemente realmente
-iab realemnte realmente
-iab jxr Joel Xavier Rocha
-iab @@ joelxr@gmail.com
-iab hj hoje
-iab blza beleza
-iab bl beleza
+autocmd FileType vue syntax sync fromstart
