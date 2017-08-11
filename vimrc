@@ -31,6 +31,7 @@ Plugin 'myusuf3/numbers.vim'
 Plugin 'gregsexton/matchtag'
 Plugin 'sickill/vim-pasta'
 Plugin 'SirVer/ultisnips'
+Plugin 'joelxr/vim-snippets'
 Plugin 'posva/vim-vue'
 Plugin 'w0rp/ale'
 Plugin 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
@@ -38,6 +39,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'vim-scripts/npm.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'ervandew/supertab'
 
 call vundle#end()
 syntax on
@@ -162,6 +164,13 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
 let delimitMate_expand_cr=1
+let g:ultisnips_javascript = {'keyword-spacing': 'always', 'semi': 'never', 'space-before-function-paren': 'always'}
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 augroup lexical
   autocmd!
@@ -171,3 +180,4 @@ augroup lexical
 augroup END
 
 autocmd FileType vue syntax sync fromstart
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
