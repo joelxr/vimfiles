@@ -24,9 +24,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-shell'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'yuttie/comfortable-motion.vim'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'gregsexton/matchtag'
 Plugin 'sickill/vim-pasta'
@@ -36,27 +34,26 @@ Plugin 'posva/vim-vue'
 Plugin 'w0rp/ale'
 Plugin 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plugin 'mattn/emmet-vim'
-Plugin 'vim-scripts/npm.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 syntax on
 filetype plugin indent on
 
-
 if has("gui_running")
   if has("gui_gtk3")
-    set guifont=hack\ 11
+    set guifont=hack\ 9
   elseif has("gui_gtk2")
-    set guifont=hack\ 11
+    set guifont=hack\ 9
   elseif has("gui_photon")
-    set guifont=Hack:s11
+    set guifont=Hack:s9
   elseif has("gui_kde")
-    set guifont=Hack/11/-1/5/50/0/0/0/1/0
+    set guifont=Hack/9/-1/5/50/0/0/0/1/0
   else
-    set guifont=Hack:h11:cDEFAULT
+    set guifont=Hack:h9:cDEFAULT
   endif
 
   set guioptions-=T
