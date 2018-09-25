@@ -26,7 +26,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'myusuf3/numbers.vim'
-Plugin 'gregsexton/matchtag'
+"Plugin 'gregsexton/matchtag'
 Plugin 'sickill/vim-pasta'
 Plugin 'SirVer/ultisnips'
 Plugin 'joelxr/vim-snippets'
@@ -168,6 +168,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:ctrlp_custom_ignore = {'dir':  '\v[\/](doc|tmp|node_modules)'}
 
 augroup lexical
   autocmd!
@@ -177,3 +178,6 @@ augroup lexical
 augroup END
 
 autocmd FileType vue syntax sync fromstart
+
+au InsertLeave * hi Cursor guibg=#dc322f
+au InsertEnter * hi Cursor guibg=#dc322f
