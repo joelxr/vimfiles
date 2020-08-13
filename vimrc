@@ -36,6 +36,8 @@ Plugin 'vim-utils/vim-man'
 Plugin 'lyuts/vim-rtags'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'mbbill/undotree'
+Plugin 'SirVer/ultisnips'
+Plugin 'joelxr/vim-snippets'
 
 call vundle#end()
 
@@ -147,6 +149,9 @@ let g:indent_guides_guide_size = 1
 let g:ctrlp_user_command = ['./git/', 'git --git-dir=%s/.git ls files -oc --exclude-staged']
 let g:ctrlp_custom_ignore = {'dir':  '\v[\/](doc|tmp|node_modules)'}
 let g:ctrlp_use_caching = 0
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 autocmd FileType vue syntax sync fromstart
 

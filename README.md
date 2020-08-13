@@ -29,7 +29,7 @@ source ~/.vim/vimrc
 Open Vim - ignore errors for now - type `ESC` and:
 
 ```
-:BundleInstall
+:PluginInstall
 ```
 
 Hit enter and Vundle will do the rest.
