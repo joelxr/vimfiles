@@ -21,7 +21,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Open `~/.vimrc` and write the following on it:
 
 ```
-source ~./vim/vimrc
+source ~/.vim/vimrc
 ```
 
 ## 4. Install all plugins
