@@ -1,9 +1,50 @@
-vimfiles
-========
+# `vimfiles`
 
-1. Clone the repository to vim files directory (Linux: "~/.vim/". Windows: "C:\Program Files\Vim\vimfiles\").
-2. Them point you vimrc to the vimrc file into the vim files folder, you just have to write the follow line: 
-    - Windows: "source $VIM/vimfiles/vimrc"
-    - Linux: "source ~/.vim/vimrc"
-3. You cannot forget about Python, you have to install Python2 on your machine!
-4. Open Vim and see if there are some errors, correct the erros and, at the end, execute "BundleInstall" to get the component (is necessary git).
+> This are my personal Vim settings.
+
+# Setup
+
+## 1. Clone the repository 
+
+```
+git clone https://github.com/joelxr/vimfiles.git ~/.vim
+```
+
+## 2. Setup [Vundle](https://github.com/VundleVim/Vundle.vim)
+
+```
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
+## 3. Setup your `.vimrc`
+
+Open `~/.vimrc` and write the following on it:
+
+```
+source ~./vim/vimrc
+```
+
+## 4. Install all plugins
+
+Open Vim - ignore errors for now - type `ESC` and:
+
+```
+:BundleInstall
+```
+
+Hit enter and Vundle will do the rest.
+
+## 5. Install `YouCompleteMe` engine
+
+First, check if your Vim has `python3` support, that's because [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe) plugin, see the documentation if you have any issues.
+
+To install YCM engines you'll need to run:
+
+```
+cd .vim/bundle/YouCompleteMe/
+./install.py --go-completer --ts-completer
+```
+
+There is a `--all` flag to install all completers.
+
+## 6. Test it

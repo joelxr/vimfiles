@@ -1,12 +1,13 @@
 set nocompatible
+
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim/
+set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Lokaltog/vim-easymotion'
@@ -17,29 +18,27 @@ Plugin 'lilydjwg/colorizer'
 Plugin 'chrisbra/csv.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'reedes/vim-lexical'
-Plugin 'mateusbraga/vim-spell-pt-br'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-shell'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'myusuf3/numbers.vim'
-"Plugin 'gregsexton/matchtag'
-Plugin 'sickill/vim-pasta'
-Plugin 'SirVer/ultisnips'
-Plugin 'joelxr/vim-snippets'
 Plugin 'posva/vim-vue'
 Plugin 'w0rp/ale'
-Plugin 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plugin 'mattn/emmet-vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-surround'
+Plugin 'morhetz/gruvbox'
+Plugin 'jremmen/vim-ripgrep'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'vim-utils/vim-man'
+Plugin 'lyuts/vim-rtags'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'mbbill/undotree'
 
 call vundle#end()
+
 syntax on
 filetype plugin indent on
 
@@ -53,7 +52,7 @@ if has("gui_running")
   elseif has("gui_kde")
     set guifont=Hack/9/-1/5/50/0/0/0/1/0
   else
-    set guifont=Hack:h9:cDEFAULT
+    set guifont=Hack:h12:cDEFAULT
   endif
 
   set guioptions-=T
@@ -62,23 +61,7 @@ if has("gui_running")
   set guitablabel=%M\ %t
 endif
 
-colorscheme solarized
-
-nmap <Leader>w :w!<cr>
-map <Leader>o :only<CR>
-map <Leader>nt :NERDTreeToggle<CR>
-noremap 0 ^
-noremap ^ 0
-nmap 9 $
-map <space> /
-map <c-space> ?
-map <Leader>ss :setlocal spell!<cr>
-map <Leader>sn ]s
-map <Leader>sp [s
-map <Leader>sa zg
-map <Leader>s? z=
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+colorscheme gruvbox
 
 set background=dark
 set mouse=a
@@ -122,7 +105,6 @@ set t_vb=
 set tm=500
 set foldcolumn=0
 set laststatus=2
-set cursorline
 set wildmenu
 set wildmode=list:longest,full
 set mps+=<:>
@@ -136,10 +118,13 @@ set nobackup
 set nowb
 set noswapfile
 set spell
-set spelllang=pt_br
 set hid
 set ffs=unix,dos,mac
 set relativenumber
+
+if executable('rg')
+  let g:rg_derive_root='true'
+endif
 
 let g:tex_conceal = ""
 let g:NERDTreeMouseMode = 1
@@ -156,28 +141,12 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeCaseSensitiveSort = 0
 let g:NERDTreeNaturalSort = "1"
 let g:airline#extensions#ale#enabled = 1
-let g:javascript_enable_domhtmlcss = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
-let delimitMate_expand_cr=1
-let g:ultisnips_javascript = {'keyword-spacing': 'always', 'semi': 'never', 'space-before-function-paren': 'always'}
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:ctrlp_user_command = ['./git/', 'git --git-dir=%s/.git ls files -oc --exclude-staged']
 let g:ctrlp_custom_ignore = {'dir':  '\v[\/](doc|tmp|node_modules)'}
-
-augroup lexical
-  autocmd!
-  autocmd FileType markdown,mkd call lexical#init()
-  autocmd FileType textile call lexical#init()
-  autocmd FileType text call lexical#init({ 'spell': 0 })
-augroup END
+let g:ctrlp_use_caching = 0
 
 autocmd FileType vue syntax sync fromstart
 
-au InsertLeave * hi Cursor guibg=#dc322f
-au InsertEnter * hi Cursor guibg=#dc322f
