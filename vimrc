@@ -26,7 +26,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'posva/vim-vue'
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'morhetz/gruvbox'
@@ -45,18 +45,7 @@ syntax on
 filetype plugin indent on
 
 if has("gui_running")
-  if has("gui_gtk3")
-    set guifont=hack\ 9
-  elseif has("gui_gtk2")
-    set guifont=hack\ 9
-  elseif has("gui_photon")
-    set guifont=Hack:s9
-  elseif has("gui_kde")
-    set guifont=Hack/9/-1/5/50/0/0/0/1/0
-  else
-    set guifont=Hack:h12:cDEFAULT
-  endif
-
+  set guifont=Hack:h16
   set guioptions-=T
   set guioptions-=e\
   set t_Co=256
@@ -105,6 +94,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+set foldmethod=indent
 set foldcolumn=0
 set laststatus=2
 set wildmenu
@@ -134,7 +124,7 @@ let g:NERDTreeWinSize = 33
 let g:NERDTreeChDirMode=2
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeHidden=1
-let g:NERDTreeShowBookmarks=0
+let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrows = 1
@@ -152,6 +142,8 @@ let g:ctrlp_use_caching = 0
 let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
 
 autocmd FileType vue syntax sync fromstart
 
+map <Leader>nt :NERDTreeToggle<CR>
