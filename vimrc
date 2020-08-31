@@ -30,7 +30,7 @@ Plugin 'dense-analysis/ale'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'morhetz/gruvbox'
-Plugin 'jremmen/vim-ripgrep'
+Plugin 'joelxr/vim-ripgrep'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'vim-utils/vim-man'
 Plugin 'lyuts/vim-rtags'
@@ -156,9 +156,10 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 autocmd FileType vue syntax sync fromstart
 
 map <Leader>nt :NERDTreeToggle<CR>
-map <Leader>ntf :NERDTreeFind<CR>
+map <Leader>nf :NERDTreeFind<CR>
 map <Leader>af :ALEFix<CR>
 map <Leader>w :Bdelete<CR>
+map <Leader>rg :Rg
 nnoremap <C-Tab> :bnext<CR>
 nnoremap <C-S-Tab> :bprevious<CR>
 
