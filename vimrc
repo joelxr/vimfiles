@@ -40,6 +40,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'joelxr/vim-snippets'
 Plugin 'APZelos/blamer.nvim'
 Plugin 'ervandew/supertab'
+Plugin 'moll/vim-bbye'
 
 call vundle#end()
 
@@ -47,7 +48,7 @@ syntax on
 filetype plugin indent on
 
 if has("gui_running")
-  set guifont=Hack:h16
+  set guifont=Hack:h14
   set guioptions-=T
   set guioptions-=e\
   set t_Co=256
@@ -138,6 +139,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 1
 let g:indent_guides_guide_size = 1
+let g:ctrlp_cmd = "CtrlPMixed"
 let g:ctrlp_user_command = ['./git/', 'git --git-dir=%s/.git ls files -oc --exclude-staged']
 let g:ctrlp_custom_ignore = {'dir':  '\v[\/](doc|tmp|node_modules)'}
 let g:ctrlp_use_caching = 0
@@ -151,9 +153,29 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-
 autocmd FileType vue syntax sync fromstart
 
 map <Leader>nt :NERDTreeToggle<CR>
 map <Leader>ntf :NERDTreeFind<CR>
 map <Leader>af :ALEFix<CR>
+map <Leader>w :Bdelete<CR>
+nnoremap <C-Tab> :bnext<CR>
+nnoremap <C-S-Tab> :bprevious<CR>
+
+if exists('g:loaded_nerdtree_ctrlp_in_tree')
+    finish
+endif
+let g:loaded_nerdtree_ctrlp_in_tree = 1
+
+function! g:NERDTREEOpenCtrlPInRoot()
+	let l:root = b:NERDTree.root.path.str()
+	let l:ctrlp_invocation = g:ctrlp_cmd . ' ' . l:root
+	exec l:ctrlp_invocation
+endfun
+
+function! s:bindCtrlPInNERDTree()
+	let l:map_invocation = 'nnoremap <buffer> ' . g:ctrlp_map . ' :call g:NERDTREEOpenCtrlPInRoot()<CR>'
+	exec l:map_invocation
+endfun
+
+autocmd FileType nerdtree call <SID>bindCtrlPInNERDTree()
