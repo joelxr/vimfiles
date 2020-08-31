@@ -38,6 +38,8 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'mbbill/undotree'
 Plugin 'SirVer/ultisnips'
 Plugin 'joelxr/vim-snippets'
+Plugin 'APZelos/blamer.nvim'
+Plugin 'ervandew/supertab'
 
 call vundle#end()
 
@@ -94,7 +96,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-set foldmethod=indent
+set foldmethod=manual
 set foldcolumn=0
 set laststatus=2
 set wildmenu
@@ -139,11 +141,19 @@ let g:indent_guides_guide_size = 1
 let g:ctrlp_user_command = ['./git/', 'git --git-dir=%s/.git ls files -oc --exclude-staged']
 let g:ctrlp_custom_ignore = {'dir':  '\v[\/](doc|tmp|node_modules)'}
 let g:ctrlp_use_caching = 0
-let g:UltiSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
+let g:ale_fixers = {'javascript': ['eslint'], 'typescript': ['eslint']}
+let g:blamer_enabled = 1
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_semantic_triggers = { 'css': [ 're!^\s{4}', 're!:\s+' ] }
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 
 autocmd FileType vue syntax sync fromstart
 
 map <Leader>nt :NERDTreeToggle<CR>
+map <Leader>ntf :NERDTreeFind<CR>
+map <Leader>af :ALEFix<CR>
