@@ -30,7 +30,6 @@ Plugin 'dense-analysis/ale'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'morhetz/gruvbox'
-Plugin 'joelxr/vim-ripgrep'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'vim-utils/vim-man'
 Plugin 'lyuts/vim-rtags'
@@ -41,6 +40,8 @@ Plugin 'joelxr/vim-snippets'
 Plugin 'APZelos/blamer.nvim'
 Plugin 'ervandew/supertab'
 Plugin 'moll/vim-bbye'
+Plugin 'udalov/kotlin-vim'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 
@@ -159,7 +160,6 @@ map <Leader>nt :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
 map <Leader>af :ALEFix<CR>
 map <Leader>w :Bdelete<CR>
-map <Leader>rg :Rg
 nnoremap <C-Tab> :bnext<CR>
 nnoremap <C-S-Tab> :bprevious<CR>
 
@@ -180,3 +180,30 @@ function! s:bindCtrlPInNERDTree()
 endfun
 
 autocmd FileType nerdtree call <SID>bindCtrlPInNERDTree()
+
+
+" ack.vim --- {{{
+
+" Use ripgrep for searching ⚡️
+" Options include:
+" --vimgrep -> Needed to parse the rg response properly for ack.vim
+" --type-not sql -> Avoid huge sql file dumps as it slows down the search
+" --smart-case -> Search case insensitive if all lowercase pattern, Search case sensitively otherwise
+let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
+
+" Auto close the Quickfix list after pressing '<enter>' on a list item
+let g:ack_autoclose = 1
+
+" Any empty ack search will search for the work the cursor is on
+let g:ack_use_cword_for_empty_search = 1
+
+" Don't jump to first match
+cnoreabbrev Ack Ack!
+
+" Maps <leader>/ so we're ready to type the search keyword
+nnoremap <Leader>/ :Ack!<Space>
+" }}}
+
+" Navigate quickfix list with ease
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>
