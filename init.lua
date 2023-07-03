@@ -17,6 +17,7 @@ require("lazy").setup({
   'tpope/vim-fugitive',
   'rhysd/git-messenger.vim',
   'lewis6991/gitsigns.nvim',
+  'lukas-reineke/indent-blankline.nvim',
   { 'nvim-neo-tree/neo-tree.nvim', branch = 'v2.x', dependencies = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim' } },
   { 'nvim-lualine/lualine.nvim', dependecies = {'nvim-tree/nvim-web-devicons'}},
   { 'rose-pine/neovim', name = 'rose-pine' },
@@ -54,4 +55,11 @@ require('lualine').setup {
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
   }
+}
+
+require("indent_blankline").setup {
+  show_end_of_line = true,
+  space_char_blankline = " ",
+  show_current_context = true,
+  show_current_context_start = true,
 }
