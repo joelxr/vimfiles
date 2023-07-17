@@ -1,4 +1,3 @@
-
 HOME = os.getenv("HOME")
 
 -- basic settings
