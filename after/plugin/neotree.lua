@@ -54,4 +54,4 @@ require("neo-tree").setup({
 vim.keymap.set('n', '<leader>t', ':Neotree toggle filesystem left<CR>',{})
 vim.keymap.set('n', '<leader>ts', ':Neotree toggle git_status left<CR>',{})
 vim.keymap.set('n', '<leader>b', ':Neotree toggle buffers left<CR>',{})
-vim.keymap.set('n', '<leader>r', ':Neotree reveal_file=%<CR>',{})
+vim.keymap.set('n', '<leader>rf', ':Neotree reveal_file=%<CR>',{})
