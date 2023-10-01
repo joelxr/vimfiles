@@ -73,7 +73,6 @@ require("lazy").setup({
       {'hrsh7th/cmp-buffer'},
       {'hrsh7th/cmp-path'},
       {'hrsh7th/cmp-nvim-lua'},
-      {'vonpb/aw-watcher.nvim'}
     }
   },
 })
@@ -82,4 +81,3 @@ vim.cmd('colorscheme rose-pine')
 
 require("mason").setup()
 require('gitsigns').setup()
-require("aw-watcher").setup()
