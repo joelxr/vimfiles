@@ -49,6 +49,10 @@ require("neo-tree").setup({
       max_items = false,
     },
   },
+  source_selector = {
+    winbar = true,
+    statusline = true 
+  }
 })
 
 vim.keymap.set('n', '<leader>t', ':Neotree toggle filesystem left<CR>',{})

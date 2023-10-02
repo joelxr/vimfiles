@@ -55,6 +55,14 @@ require("lazy").setup({
   { 'mrbjarksen/neo-tree-diagnostics.nvim', dependencies = { 'nvim-neo-tree/neo-tree.nvim' } },
   { 'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'}},
   { 'rose-pine/neovim', name = 'rose-pine' },
+  {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+        require 'nordic' .load()
+    end
+  },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.1', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   {
@@ -74,12 +82,18 @@ require("lazy").setup({
       {'hrsh7th/cmp-buffer'},
       {'hrsh7th/cmp-path'},
       {'hrsh7th/cmp-nvim-lua'},
+      {'vonpb/aw-watcher.nvim'}
     }
   },
 })
 
-vim.cmd('colorscheme rose-pine')
 
 require("mason").setup()
 require('gitsigns').setup()
-require("autoclose").setup()
+require("aw-watcher").setup()
+
+-- foldings
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+
