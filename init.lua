@@ -19,6 +19,7 @@ require("lazy").setup({
   'rhysd/git-messenger.vim',
   'lewis6991/gitsigns.nvim',
   'lukas-reineke/indent-blankline.nvim',
+  'm4xshen/autoclose.nvim',
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -81,3 +82,4 @@ vim.cmd('colorscheme rose-pine')
 
 require("mason").setup()
 require('gitsigns').setup()
+require("autoclose").setup()

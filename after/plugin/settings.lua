@@ -82,6 +82,7 @@ vim.o.background = 'dark'
 vim.o.autochdir = false
 
 vim.keymap.set('n', '<leader>rp', ':! echo % | xclip -sel clipboard<CR>',{})
-vim.keymap.set('n', '<leader>wq', ':wqall')
-vim.keymap.set('n', '<leader>w', ':wall')
-vim.keymap.set('n', '<leader>p', ':b#')
+vim.keymap.set('n', '<leader>wq', ':wqall<CR>')
+vim.keymap.set('n', '<leader>w', ':wall<CR>')
+vim.keymap.set('n', '<leader>p', ':b#<CR>')
+vim.keymap.set('n', '<leader>tt', ':TroubleToggle<CR>')
