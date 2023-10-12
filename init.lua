@@ -19,7 +19,6 @@ require("lazy").setup({
   'rhysd/git-messenger.vim',
   'lewis6991/gitsigns.nvim',
   'lukas-reineke/indent-blankline.nvim',
-  'm4xshen/autoclose.nvim',
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -32,6 +31,28 @@ require("lazy").setup({
       require('dashboard').setup ({})
     end,
     dependencies = { {'nvim-tree/nvim-web-devicons'}}
+  },
+  {
+    'MunifTanjim/prettier.nvim',
+    config = function()
+      require('prettier').setup({
+        bin = 'prettierd',
+        filetypes = {
+          "css",
+          "graphql",
+          "html",
+          "javascript",
+          "javascriptreact",
+          "json",
+          "less",
+          "markdown",
+          "scss",
+          "typescript",
+          "typescriptreact",
+          "yaml",
+        },
+      })
+    end,
   },
   {
     "kylechui/nvim-surround",
@@ -66,6 +87,12 @@ require("lazy").setup({
   { 'nvim-telescope/telescope.nvim', tag = '0.1.1', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp"
+  },
+  {'vonpb/aw-watcher.nvim'},
+  {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     dependencies = {
@@ -82,7 +109,6 @@ require("lazy").setup({
       {'hrsh7th/cmp-buffer'},
       {'hrsh7th/cmp-path'},
       {'hrsh7th/cmp-nvim-lua'},
-      {'vonpb/aw-watcher.nvim'}
     }
   },
 })
