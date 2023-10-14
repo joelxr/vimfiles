@@ -89,8 +89,11 @@ require("lazy").setup({
   {
     "L3MON4D3/LuaSnip",
     version = "v2.*",
-    build = "make install_jsregexp"
+    build = "make install_jsregexp",
+    dependencies = { "rafamadriz/friendly-snippets" },
   },
+  {'saadparwaiz1/cmp_luasnip'},
+  { "rafamadriz/friendly-snippets" },
   {'vonpb/aw-watcher.nvim'},
   {
     'VonHeikemen/lsp-zero.nvim',
@@ -108,18 +111,10 @@ require("lazy").setup({
       {'hrsh7th/cmp-nvim-lsp'},
       {'hrsh7th/cmp-buffer'},
       {'hrsh7th/cmp-path'},
-      {'hrsh7th/cmp-nvim-lua'},
     }
   },
 })
 
-
 require("mason").setup()
 require('gitsigns').setup()
 require("aw-watcher").setup()
-
--- foldings
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-
-
