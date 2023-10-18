@@ -25,6 +25,14 @@ require("lazy").setup({
     opts = { },
   },
   {
+    "anuvyklack/pretty-fold.nvim",
+    config = function()
+      require('pretty-fold').setup()
+    end,
+  },
+  'RRethy/vim-illuminate',
+  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+  {
     'glepnir/dashboard-nvim',
     event = 'VimEnter',
     config = function()
@@ -53,6 +61,13 @@ require("lazy").setup({
         },
       })
     end,
+  },
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup ({})
+    end,
+    lazy = false,
   },
   {
     "kylechui/nvim-surround",
