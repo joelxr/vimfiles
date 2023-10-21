@@ -10,6 +10,7 @@ local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
 require('luasnip.loaders.from_vscode').lazy_load()
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
 
 cmp.setup({
   mapping = {
@@ -30,10 +31,10 @@ cmp.setup({
     end,
   },
   sources = {
+    { name = 'luasnip' },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'path' },
-    { name = 'luasnip' },
   },
 })
 
