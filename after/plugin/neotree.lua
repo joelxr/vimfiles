@@ -34,11 +34,6 @@ require("neo-tree").setup({
     },
     bind_to_cwd = true,
     diag_sort_function = "severity",
-    follow_behavior = {
-      always_focus_file = false,
-      expand_followed = true,
-      collapse_others = true,
-    },
     follow_current_file = true,
     group_dirs_and_files = true, 
     group_empty_dirs = true, 

@@ -99,7 +99,7 @@ require("lazy").setup({
         require 'nordic' .load()
     end
   },
-  { 'nvim-telescope/telescope.nvim', tag = '0.1.1', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   {
     "L3MON4D3/LuaSnip",
@@ -109,7 +109,6 @@ require("lazy").setup({
   },
   {'saadparwaiz1/cmp_luasnip'},
   { "rafamadriz/friendly-snippets" },
-  {'vonpb/aw-watcher.nvim'},
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
@@ -132,4 +131,3 @@ require("lazy").setup({
 
 require("mason").setup()
 require('gitsigns').setup()
-require("aw-watcher").setup()
