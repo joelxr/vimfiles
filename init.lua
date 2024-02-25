@@ -18,7 +18,7 @@ require("lazy").setup({
   'tpope/vim-rhubarb',
   'rhysd/git-messenger.vim',
   'lewis6991/gitsigns.nvim',
-  'lukas-reineke/indent-blankline.nvim',
+  'mfussenegger/nvim-dap',
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -91,14 +91,6 @@ require("lazy").setup({
   { 'mrbjarksen/neo-tree-diagnostics.nvim', dependencies = { 'nvim-neo-tree/neo-tree.nvim' } },
   { 'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'}},
   { 'rose-pine/neovim', name = 'rose-pine' },
-  {
-    'AlexvZyl/nordic.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-        require 'nordic' .load()
-    end
-  },
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   {
@@ -131,3 +123,5 @@ require("lazy").setup({
 
 require("mason").setup()
 require('gitsigns').setup()
+
+
