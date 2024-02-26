@@ -21,7 +21,7 @@ cmp.setup({
     ['<C-f>'] = cmp_action.luasnip_jump_forward(),
     ['<C-b>'] = cmp_action.luasnip_jump_backward(),
   },
-  preselect = 'item',
+  -- preselect = 'item',
   completion = {
     completeopt = 'menu,menuone,noinsert'
   },
@@ -31,8 +31,8 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = 'luasnip' },
     { name = 'nvim_lsp' },
+    { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
   },
