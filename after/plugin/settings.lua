@@ -86,7 +86,6 @@ vim.keymap.set('n', '<leader>wq', ':wqall!<CR>')
 vim.keymap.set('n', '<leader>q', ':qall!<CR>')
 vim.keymap.set('n', '<leader>w', ':wall!<CR>')
 vim.keymap.set('n', '<leader>tt', ':TroubleToggle<CR>')
-vim.keymap.set('n', '<leader><leader>', ':Prettier<CR>')
 
 vim.keymap.set('n', '<leader>s', '<cmd>lua require("spectre").toggle()<CR>', {
     desc = "Toggle Spectre"
@@ -100,3 +99,5 @@ vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual(
 vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
     desc = "Search on current file"
 })
+vim.keymap.set('n', '<F1>', '<Esc>')
+vim.keymap.set('i', '<F1>', '<Esc>')
