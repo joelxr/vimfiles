@@ -18,7 +18,6 @@ require("lazy").setup({
   'tpope/vim-rhubarb',
   'rhysd/git-messenger.vim',
   'lewis6991/gitsigns.nvim',
-  'mfussenegger/nvim-dap',
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
