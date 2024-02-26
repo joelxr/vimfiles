@@ -5,7 +5,7 @@ require("neo-tree").setup({
     "git_status",
     "diagnostics",
   },
-  close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+  close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
   popup_border_style = "rounded",
   enable_git_status = true,
   enable_diagnostics = true,
@@ -28,7 +28,7 @@ require("neo-tree").setup({
   },
   diagnostics = {
     auto_preview = {
-      enabled = false,
+      enabled = true,
       preview_config = {},
       event = "neo_tree_buffer_enter",
     },
@@ -44,10 +44,6 @@ require("neo-tree").setup({
       max_items = false,
     },
   },
-  --source_selector = {
-  --  winbar = true,
-  --  statusline = true 
-  --}
 })
 
 vim.keymap.set('n', '<leader>t', ':Neotree toggle filesystem left<CR>',{})
