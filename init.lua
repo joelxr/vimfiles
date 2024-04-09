@@ -14,113 +14,42 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-  'rhysd/git-messenger.vim',
-  'lewis6991/gitsigns.nvim',
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = { },
-  },
-  {
-    "anuvyklack/pretty-fold.nvim",
-    config = function()
-      require('pretty-fold').setup()
-    end,
-  },
-  'RRethy/vim-illuminate',
-  {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
-  {
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
-    config = function()
-      require('dashboard').setup ({})
-    end,
-    dependencies = { {'nvim-tree/nvim-web-devicons'}}
-  },
-  {
-    'MunifTanjim/prettier.nvim',
-    config = function()
-      require('prettier').setup({
-        bin = 'prettierd',
-        filetypes = {
-          "css",
-          "graphql",
-          "html",
-          "javascript",
-          "javascriptreact",
-          "json",
-          "less",
-          "markdown",
-          "scss",
-          "typescript",
-          "typescriptreact",
-          "yaml",
-        },
-      })
-    end,
-  },
-  {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup ({})
-    end,
-    lazy = false,
-  },
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({})
-    end
-  },
-  {
-    'Wansmer/treesj',
-    keys = { '<space>m', '<space>j', '<space>s' },
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('treesj').setup({})
-    end,
-  },
-  { 'jose-elias-alvarez/null-ls.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { 'nvim-pack/nvim-spectre', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { 'nvim-neo-tree/neo-tree.nvim', branch = 'v2.x', dependencies = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim' } },
-  { 'mrbjarksen/neo-tree-diagnostics.nvim', dependencies = { 'nvim-neo-tree/neo-tree.nvim' } },
-  { 'nvim-lualine/lualine.nvim', dependencies = {'nvim-tree/nvim-web-devicons'}},
-  { 'rose-pine/neovim', name = 'rose-pine' },
-  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-  {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*",
-    build = "make install_jsregexp",
-    dependencies = { "rafamadriz/friendly-snippets" },
-  },
-  {'saadparwaiz1/cmp_luasnip'},
-  { "rafamadriz/friendly-snippets" },
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    dependencies = {
-      {'neovim/nvim-lspconfig'},
-      {
-        'williamboman/mason.nvim',
-        build = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
-      },
-      {'williamboman/mason-lspconfig.nvim'},
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-    }
-  },
+  "luisiacc/gruvbox-baby",
+  "nvim-lua/plenary.nvim",
+  "nvim-tree/nvim-web-devicons",
+  "MunifTanjim/nui.nvim",
+  "3rd/image.nvim",
+  "nvim-treesitter/nvim-treesitter",
+  "jose-elias-alvarez/null-ls.nvim",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "neovim/nvim-lspconfig",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-cmdline",
+  "hrsh7th/cmp-emoji",
+  "hrsh7th/nvim-cmp",
+  "L3MON4D3/LuaSnip",
+  "saadparwaiz1/cmp_luasnip",
+  "nvim-neo-tree/neo-tree.nvim",
+  "mrbjarksen/neo-tree-diagnostics.nvim",
+  "lewis6991/gitsigns.nvim",
+  "nvim-telescope/telescope.nvim",
+  "nvim-pack/nvim-spectre",
+  "nvim-lualine/lualine.nvim",
+  "kdheepak/lazygit.nvim",
+  "nvimdev/dashboard-nvim",
+  "Shatur/neovim-session-manager",
+  "stevearc/conform.nvim",
+  "lukas-reineke/indent-blankline.nvim",
+  "echasnovski/mini.nvim",
+  "echasnovski/mini.surround",
+  "echasnovski/mini.comment",
+  "lewis6991/gitsigns.nvim",
+  "RRethy/vim-illuminate",
+  "nvim-treesitter/nvim-treesitter-context",
+  "windwp/nvim-ts-autotag",
+  "stevearc/dressing.nvim",
 })
-
-require("mason").setup()
-require('gitsigns').setup()
-
 

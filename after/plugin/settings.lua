@@ -85,7 +85,6 @@ vim.keymap.set('n', '<leader>rp', ':! echo % | xclip -sel clipboard<CR>',{})
 vim.keymap.set('n', '<leader>wq', ':wqall!<CR>')
 vim.keymap.set('n', '<leader>q', ':qall!<CR>')
 vim.keymap.set('n', '<leader>w', ':wall!<CR>')
-vim.keymap.set('n', '<leader>tt', ':TroubleToggle<CR>')
 
 vim.keymap.set('n', '<leader>s', '<cmd>lua require("spectre").toggle()<CR>', {
     desc = "Toggle Spectre"
