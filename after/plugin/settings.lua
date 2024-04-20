@@ -78,7 +78,6 @@ au InsertLeave * set cursorline
 augroup END
 ]])
 
-vim.o.background = 'dark'
 vim.o.autochdir = false
 
 vim.keymap.set('n', '<leader>rp', ':! echo % | xclip -sel clipboard<CR>',{})
