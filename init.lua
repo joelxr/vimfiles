@@ -29,6 +29,7 @@ require("lazy").setup({
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-emoji",
+  "kirasok/cmp-hledger",
   "hrsh7th/nvim-cmp",
   "rafamadriz/friendly-snippets",
   "L3MON4D3/LuaSnip",
@@ -52,5 +53,6 @@ require("lazy").setup({
   "nvim-treesitter/nvim-treesitter-context",
   "windwp/nvim-ts-autotag",
   "stevearc/dressing.nvim",
+  "ledger/vim-ledger",
 })
 
