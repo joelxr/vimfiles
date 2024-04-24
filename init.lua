@@ -54,5 +54,6 @@ require("lazy").setup({
   "windwp/nvim-ts-autotag",
   "stevearc/dressing.nvim",
   "ledger/vim-ledger",
+  "chrisbra/csv.vim",
 })
 
