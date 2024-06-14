@@ -99,3 +99,5 @@ vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search(
 })
 vim.keymap.set('n', '<F1>', '<Esc>')
 vim.keymap.set('i', '<F1>', '<Esc>')
+vim.keymap.set('n', '<leader><bs>', ':b#<cr>')
+
