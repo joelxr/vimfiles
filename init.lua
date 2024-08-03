@@ -55,6 +55,5 @@ require("lazy").setup({
   "stevearc/dressing.nvim",
   "ledger/vim-ledger",
   "chrisbra/csv.vim",
-  "Luxed/aw-watcher-nvim",
 })
 
