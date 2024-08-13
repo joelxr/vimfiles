@@ -42,7 +42,6 @@ require("lazy").setup({
   "nvim-lualine/lualine.nvim",
   "kdheepak/lazygit.nvim",
   "nvimdev/dashboard-nvim",
-  "Shatur/neovim-session-manager",
   "stevearc/conform.nvim",
   "lukas-reineke/indent-blankline.nvim",
   "echasnovski/mini.nvim",
