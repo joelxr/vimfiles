@@ -3,7 +3,8 @@ require("conform").setup({
     javascript = { "eslint_d" },
     typescript = { "eslint_d" },
     vue = { "eslint_d" },
-    ["*"] = { "trim_whitespace" },
+    json = { "jq" },
+    ["*"] = { "trim_whitespace", "trim_newlines" },
   },
 })
 

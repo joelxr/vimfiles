@@ -18,7 +18,7 @@ require("neo-tree").setup({
       enable_character_fade = true
     },
     indent = {
-      indent_size = 2,
+      indent_size = 1,
       padding = 1, -- extra padding on left hand side
       -- indent guides
       with_markers = true,
@@ -91,7 +91,7 @@ require("neo-tree").setup({
   commands = {},
   window = {
     position = "left",
-    width = 40,
+    width = 60,
     mapping_options = {
       noremap = true,
       nowait = true,
@@ -154,9 +154,9 @@ require("neo-tree").setup({
   filesystem = {
     filtered_items = {
       visible = false, -- when true, they will just be displayed differently than normal items
-      hide_dotfiles = true,
-      hide_gitignored = true,
-      hide_hidden = true, -- only works on Windows for hidden files/directories
+      hide_dotfiles = false,
+      hide_gitignored = false,
+      hide_hidden = false, -- only works on Windows for hidden files/directories
       hide_by_name = {
         --"node_modules"
       },
