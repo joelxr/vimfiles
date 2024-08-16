@@ -14,7 +14,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  "luisiacc/gruvbox-baby",
   "nvim-lua/plenary.nvim",
   "nvim-tree/nvim-web-devicons",
   "MunifTanjim/nui.nvim",
@@ -54,5 +53,6 @@ require("lazy").setup({
   "stevearc/dressing.nvim",
   "ledger/vim-ledger",
   "chrisbra/csv.vim",
+  "rose-pine/neovim",
 })
 
