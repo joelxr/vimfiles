@@ -46,6 +46,7 @@ require("lazy").setup({
   "echasnovski/mini.nvim",
   "echasnovski/mini.comment",
   "tpope/vim-surround",
+  "tpope/vim-fugitive",
   "lewis6991/gitsigns.nvim",
   "RRethy/vim-illuminate",
   "nvim-treesitter/nvim-treesitter-context",
